@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+UtilityApp/Utils\.JqueryDatatable/obj/Debug/
+
+UtilityApp/Utils\.JqueryDatatable/bin/Debug/
+
+UtilityApp/SignalRNotification/bin/Debug/
+
+UtilityApp/SignalRNotification/obj/Debug/
