@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Email", "Utils.Email\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.JqueryDatatable", "Utils.JqueryDatatable\Utils.JqueryDatatable.csproj", "{7E89A268-6E92-4E8B-A3AC-C246B2FF8EE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.SignalRNotification", "Utils.SignalRNotification\Utils.SignalRNotification.csproj", "{1192BC70-BC36-4D46-9676-D57F45DACD7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7E89A268-6E92-4E8B-A3AC-C246B2FF8EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E89A268-6E92-4E8B-A3AC-C246B2FF8EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E89A268-6E92-4E8B-A3AC-C246B2FF8EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1192BC70-BC36-4D46-9676-D57F45DACD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1192BC70-BC36-4D46-9676-D57F45DACD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1192BC70-BC36-4D46-9676-D57F45DACD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1192BC70-BC36-4D46-9676-D57F45DACD7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

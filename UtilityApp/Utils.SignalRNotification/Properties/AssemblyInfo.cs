@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SignalRNotification")]
+[assembly: AssemblyTitle("Utils.SignalRNotification")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SignalRNotification")]
+[assembly: AssemblyProduct("Utils.SignalRNotification")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("75ed02ea-fc28-48f9-93b1-436532f225b5")]
+[assembly: Guid("1192bc70-bc36-4d46-9676-d57f45dacd7e")]
 
 // Version information for an assembly consists of the following four values:
 //
