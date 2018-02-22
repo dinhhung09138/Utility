@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 namespace Utils.JqueryDatatable
 {
     /// <summary>
@@ -15,7 +16,7 @@ namespace Utils.JqueryDatatable
         /// 
         /// </summary>
         public int start { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+
 namespace Utils.JqueryDatatable
 {
     /// <summary>
     /// JqueryData response to client
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class JqueryDataTableResponse<T> where T : class
+    public class DataTableResponse<T> where T : class
     {
         /// <summary>
         /// Draw counter. 

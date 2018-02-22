@@ -1,4 +1,5 @@
-﻿namespace Utils.JqueryDatatable
+﻿
+namespace Utils.JqueryDatatable
 {
     /// <summary>
     /// Use for some cases user want to have some variable included into parameter of jquery datatable
@@ -9,7 +10,7 @@
         /// Custom table parameter string
         /// </summary>
         public string TableName { get; set; } = string.Empty;
-        
+
         /// <summary>
         /// custom filter parameter string
         /// </summary>
