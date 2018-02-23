@@ -64,3 +64,7 @@ UtilityApp/Utils\.Email/obj/Debug/
 UtilityApp/Utils\.SignalRNotification/obj/Debug/
 
 UtilityApp/Utils\.SignalRNotification/bin/Debug/
+
+UtilityApp/Utils/obj/Debug/
+
+UtilityApp/Utils/bin/Debug/
