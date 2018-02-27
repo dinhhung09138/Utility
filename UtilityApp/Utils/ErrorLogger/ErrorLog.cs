@@ -14,12 +14,15 @@ namespace Utils.ErrorLogger
     /// </summary>
     public class ErrorLog
     {
+        #region " [ Properties ] "
+
+        private static readonly string EVENT_LOG_NAME = "WebLog";
 
         /// <summary>
         /// The string log file path
         /// </summary>
         private static string _strLogFilePath = string.Empty;
-        
+
         /// <summary>
         /// The sw
         /// </summary>
@@ -53,161 +56,37 @@ namespace Utils.ErrorLogger
             }
         }
 
-        /// <summary>
-        /// Write error log entry for window event if the bLogType is true. Otherwise, write the log entry to
-        /// customized text-based text file
-        /// </summary>
-        /// <param name="bLogType">if set to <c>true</c> [b log type].</param>
-        /// <param name="objException">The object exception.</param>
-        /// <returns>
-        /// false if the problem persists
-        /// </returns>
-        public static bool ErrorRoutine(bool bLogType, Exception objException)
-        {
-            try
-            {
-                //Write to Windows event log
-                if (bLogType)
-                {
-                    const string eventLogName = "ErrorSample";
+        #endregion
 
-                    if (!EventLog.SourceExists(eventLogName))
-                        EventLog.CreateEventSource(objException.Message, eventLogName);
-
-                    // Inserting into event log
-                    EventLog log = new EventLog { Source = eventLogName };
-                    log.WriteEntry(objException.Message, EventLogEntryType.Error);
-                }
-                //Custom text-based event log
-                else
-                {
-                    //if (!CustomErrorRoutine(objException))
-                    return false;
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// If the LogFile path is empty then, it will write the log entry to LogFile.txt under application directory.
-        /// If the LogFile.txt is not availble it will create it
-        /// If the Log File path is not empty but the file is not availble it will create it.
-        /// </summary>
-        /// <param name="objException">The object exception.</param>
-        /// <param name="siteId">The site identifier.</param>
-        /// <returns>
-        /// false if the problem persists
-        /// </returns>
-        private static bool CustomErrorRoutine(Exception objException, int? siteId)
-        {
-            string strPathName;
-            if (_strLogFilePath.Equals(string.Empty))
-            {
-                //Get Default log file path "LogFile.txt"
-                strPathName = GetLogFilePath(0, siteId);
-            }
-            else
-            {
-
-                //If the log file path is not empty but the file is not available it will create it
-                if (!File.Exists(_strLogFilePath))
-                {
-                    if (!CheckDirectory(_strLogFilePath))
-                        return false;
-
-                    FileStream fs = new FileStream(_strLogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                    fs.Close();
-                }
-                strPathName = _strLogFilePath;
-            }
-
-            bool bReturn = WriteErrorLog(strPathName, objException, "", 0);
-
-            return bReturn;
-        }
-
-        /// <summary>
-        /// Writes the error log.
-        /// </summary>
-        /// <param name="strPathName">Name of the string path.</param>
-        /// <param name="objException">The object exception.</param>
-        /// <param name="additionalinfo">The additionalinfo.</param>
-        /// <param name="getvalue">The getvalue.</param>
-        /// <returns></returns>
-        private static bool WriteErrorLog(string strPathName, Exception objException, string additionalinfo, int getvalue)
-        {
-            bool bReturn;
-
-            try
-            {
-                IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
-
-                _sw = new StreamWriter(strPathName, true);
-                if (getvalue == 0)
-                {
-                    _sw.WriteLine("Source		: " + objException.Source.Trim());
-                    _sw.WriteLine("Method		: " + objException.TargetSite.Name);
-                    _sw.WriteLine("Date		: " + DateTime.UtcNow.ToShortDateString());
-                    _sw.WriteLine("Time		: " + DateTime.UtcNow.ToLongTimeString());
-                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
-                    _sw.WriteLine("Error		: " + objException.Message.Trim());
-                    _sw.WriteLine("Stack Trace	: " + objException.StackTrace.Trim());
-                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
-                }
-                else if (getvalue == 1)
-                {
-                    _sw.WriteLine("Date		: " + DateTime.UtcNow.ToShortDateString());
-                    _sw.WriteLine("Time		: " + DateTime.UtcNow.ToLongTimeString());
-                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
-                    _sw.WriteLine("Additional Info		: " + additionalinfo.Trim());
-                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
-                }
-                _sw.Flush();
-                _sw.Close();
-                bReturn = true;
-            }
-            catch (Exception)
-            {
-                bReturn = false;
-            }
-            return bReturn;
-        }
+        #region " [ Private function ] "
 
         /// <summary>
         /// Check the log file in applcation directory. If it is not available, creae it
         /// </summary>
-        /// <param name="getvalue">The getvalue.</param>
-        /// <param name="siteId">The site identifier.</param>
         /// <returns>
         /// Log file path
         /// </returns>
-        private static string GetLogFilePath(int getvalue, int? siteId)
+        private static string GetLogFilePath(bool infoLog = true)
         {
             try
             {
                 // get the base directory
                 //string baseDir = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.RelativeSearchPath;
 
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory + "//Logs//" + (siteId ?? 0);
+                string baseDir = Path.Combine(LogFilePath, "Logs");
                 // search the file below the current directory
                 if (!Directory.Exists(baseDir))
                 {
                     Directory.CreateDirectory(baseDir);
                 }
-                string retFilePath = string.Empty;
-                if (getvalue == 0)
+                string retFilePath = "";
+                if (infoLog)
                 {
-                    retFilePath = baseDir + "//" + "LogFile.txt";
+                    retFilePath = Path.Combine(baseDir, "InforLog.txt");
                 }
-                else if (getvalue == 1)
+                else
                 {
-                    retFilePath = baseDir + "//" + "AdditionalInfoLogFile.txt";
+                    retFilePath = Path.Combine(baseDir, "ErrorLog.txt");
                 }
 
                 // if exists, return the path
@@ -256,103 +135,86 @@ namespace Utils.ErrorLogger
         }
 
         /// <summary>
-        /// Gets the application path.
+        /// Writes the error log.
         /// </summary>
-        /// <returns>
-        /// System.String.
-        /// </returns>
-        private static string GetApplicationPath()
+        /// <param name="strPathName">Name of the string path.</param>
+        /// <param name="objException">The object exception.</param>
+        /// <param name="additionalinfo">The additionalinfo.</param>
+        /// <param name="isException">Exception or not.</param>
+        /// <returns></returns>
+        private static bool WriteErrorLog(string strPathName, Exception objException, string additionalinfo, bool isException)
         {
+            bool bReturn;
+
             try
             {
-                string strBaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                int nFirstSlashPos = strBaseDirectory.LastIndexOf("\\", StringComparison.Ordinal);
-                string strTemp = string.Empty;
+                IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
 
-                if (0 < nFirstSlashPos)
-                    strTemp = strBaseDirectory.Substring(0, nFirstSlashPos);
-
-                int nSecondSlashPos = strTemp.LastIndexOf("\\", StringComparison.Ordinal);
-                string strTempAppPath = string.Empty;
-                if (0 < nSecondSlashPos)
-                    strTempAppPath = strTemp.Substring(0, nSecondSlashPos);
-
-                string strAppPath = strTempAppPath.Replace("bin", "");
-                return strAppPath;
+                _sw = new StreamWriter(strPathName, true);
+                if (isException)
+                {
+                    _sw.WriteLine("Source		: " + objException.Source.Trim());
+                    _sw.WriteLine("Method		: " + objException.TargetSite.Name);
+                    _sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
+                    _sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
+                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
+                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
+                    _sw.WriteLine("Error		: " + objException.Message.Trim());
+                    _sw.WriteLine("Stack Trace	: " + objException.StackTrace.Trim());
+                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
+                }
+                else
+                {
+                    _sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
+                    _sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
+                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
+                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
+                    _sw.WriteLine("Additional Info		: " + additionalinfo.Trim());
+                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
+                }
+                _sw.Flush();
+                _sw.Close();
+                bReturn = true;
             }
             catch (Exception)
             {
-                return string.Empty;
+                bReturn = false;
             }
-        }
-
-        /// <summary>
-        /// This Is created in order to maintain Additional infomation in the seperate file path and for clear visibility
-        /// </summary>
-        /// <param name="logDescription">The log description.</param>
-        /// <param name="siteId">The site identifier.</param>
-        /// <returns></returns>
-        private static bool AddLogToFile(string logDescription, int? siteId)
-        {
-            string strAddlogPathName;
-            if (LogFilePath.Equals(string.Empty))
-            {
-                //Get Default log file path "LogFile.txt"
-                strAddlogPathName = GetLogFilePath(1, siteId);
-            }
-            else
-            {
-
-                //If the log file path is not empty but the file is not available it will create it
-                if (!File.Exists(LogFilePath))
-                {
-                    if (!CheckDirectory(LogFilePath))
-                        return false;
-
-                    FileStream fs = new FileStream(LogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                    fs.Close();
-                }
-                strAddlogPathName = LogFilePath;
-            }
-
-            Exception ex = new Exception();
-            bool bReturn = WriteErrorLog(strAddlogPathName, ex, logDescription, 1);
             return bReturn;
         }
 
+
+        #endregion
+
+        #region " [ Publish ] "
+
         /// <summary>
-        /// Adds the log in Database.
+        /// Adds the log to window event.
+        /// Write error log entry for window event if the bLogType is true. Otherwise, write the log entry to
+        /// customized text-based text file
         /// </summary>
-        /// <param name="logDescription">The log description.</param>
-        /// <param name="logType">Type of the log.</param>
-        /// <param name="siteId">The site identifier.</param>
-        /// <param name="siteType">Type of the site.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="methodName">Name of the method.</param>
         /// <param name="objException">The object exception.</param>
-        /// <param name="userId">The user identifier.</param>
-        public static void AddLogToDb(string logDescription, string logType, int? siteId, string siteType, string fileName, string methodName, Exception objException, int userId)
+        /// <returns>
+        /// false if the problem persists
+        /// </returns>
+        public static bool AddLogToWindowEvent(Exception objException)
         {
-            IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
-            //using (var context = new StandardDataLibraryEntities())
-            //{
-            //    //App Type = Site type 1) web 2) WebAPI 3) WindowService
-            //    var objXmlLog = new GMALog
-            //    {
-            //        SiteId = siteId,
-            //        AppType = siteType,
-            //        LogType = logType,
-            //        FileSection = fileName,
-            //        MethodName = methodName,
-            //        LogDescription = logDescription + "<br /> " + objException,
-            //        Status = (int)Status.Active,
-            //        IPAddress = "IPv4 Address : " + ips[1],
-            //        CreatedBy = userId,
-            //        CreatedOnUtc = DateTime.UtcNow
-            //    };
-            //    context.GMALogs.Add(objXmlLog);
-            //    context.SaveChanges();
-            //}
+            try
+            {
+                //Write to Windows event log
+                if (!EventLog.SourceExists(EVENT_LOG_NAME))
+                    EventLog.CreateEventSource(objException.Message, EVENT_LOG_NAME);
+
+                // Inserting into event log
+                EventLog log = new EventLog { Source = EVENT_LOG_NAME };
+                log.WriteEntry(objException.Message, EventLogEntryType.Error);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -385,6 +247,108 @@ namespace Utils.ErrorLogger
                 log.Dispose();
             }
         }
+
+        /// <summary>
+        /// This Is created in order to maintain Additional infomation in the seperate file path and for clear visibility
+        /// </summary>
+        /// <param name="logDescription">The log description.</param>
+        /// <returns></returns>
+        public static bool AddInfoLogToFile(string logDescription)
+        {
+            string strAddlogPathName;
+            if (LogFilePath.Equals(string.Empty))
+            {
+                //Get Default log file path "LogFile.txt"
+                strAddlogPathName = GetLogFilePath(true);
+            }
+            else
+            {
+                //If the log file path is not empty but the file is not available it will create it
+                if (!File.Exists(LogFilePath))
+                {
+                    if (!CheckDirectory(LogFilePath))
+                        return false;
+
+                    FileStream fs = new FileStream(LogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    fs.Close();
+                }
+                strAddlogPathName = LogFilePath;
+            }
+
+            Exception ex = new Exception();
+            bool bReturn = WriteErrorLog(strAddlogPathName, ex, logDescription, false);
+            return bReturn;
+        }
+
+        /// <summary>
+        /// This Is created in order to maintain Additional infomation in the seperate file path and for clear visibility
+        /// </summary>
+        /// <param name="AdditionInforDescription">The log description. [User define]</param>
+        /// <param name="objException"> Exception object </param>
+        /// <returns></returns>
+        public static bool AddErrorLogToFile(string AdditionInforDescription, Exception objException)
+        {
+            string strAddlogPathName;
+            if (LogFilePath.Equals(string.Empty))
+            {
+                //Get Default log file path "LogFile.txt"
+                strAddlogPathName = GetLogFilePath(true);
+            }
+            else
+            {
+                //If the log file path is not empty but the file is not available it will create it
+                if (!File.Exists(LogFilePath))
+                {
+                    if (!CheckDirectory(LogFilePath))
+                        return false;
+
+                    FileStream fs = new FileStream(LogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    fs.Close();
+                }
+                strAddlogPathName = LogFilePath;
+            }
+
+            bool bReturn = WriteErrorLog(strAddlogPathName, objException, AdditionInforDescription, false);
+            return bReturn;
+        }
+
+        /// <summary>
+        /// Adds the log in Database.
+        /// Not body function
+        /// </summary>
+        /// <param name="logDescription">The log description.</param>
+        /// <param name="logType">Type of the log.</param>
+        /// <param name="siteId">The site identifier.</param>
+        /// <param name="siteType">Type of the site.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="methodName">Name of the method.</param>
+        /// <param name="objException">The object exception.</param>
+        /// <param name="userId">The user identifier.</param>
+        public static void AddLogToDb(string logDescription, string logType, int? siteId, string siteType, string fileName, string methodName, Exception objException, int userId)
+        {
+            IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
+            //using (var context = new StandardDataLibraryEntities())
+            //{
+            //    //App Type = Site type 1) web 2) WebAPI 3) WindowService
+            //    var objXmlLog = new GMALog
+            //    {
+            //        SiteId = siteId,
+            //        AppType = siteType,
+            //        LogType = logType,
+            //        FileSection = fileName,
+            //        MethodName = methodName,
+            //        LogDescription = logDescription + "<br /> " + objException,
+            //        Status = (int)Status.Active,
+            //        IPAddress = "IPv4 Address : " + ips[1],
+            //        CreatedBy = userId,
+            //        CreatedOnUtc = DateTime.Now
+            //    };
+            //    context.GMALogs.Add(objXmlLog);
+            //    context.SaveChanges();
+            //}
+        }
+
+        #endregion
 
     }
 }

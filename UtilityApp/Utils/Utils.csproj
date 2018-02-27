@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\UserAuthorization.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="CommonModel\ErrorModel.cs" />
+    <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
     <Compile Include="ErrorLogger\ErrorLog.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Email\Email.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="Security\PasswordSecurity.cs" />
     <Compile Include="Security\TokenSecurity.cs" />
     <Compile Include="SignalrNotification\Notifier.cs" />
-    <Compile Include="UserLoginModel.cs" />
+    <Compile Include="CommonModel\UserLoginModel.cs" />
     <Compile Include="Validation\RegularValidation.cs" />
   </ItemGroup>
   <ItemGroup>
