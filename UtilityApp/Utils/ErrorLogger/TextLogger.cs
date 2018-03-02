@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utils.ErrorLogger
 {
     /// <summary>
     /// For log error and information in file and in database.
     /// </summary>
-    public class ErrorLog
+    public class TextLogger
     {
         #region " [ Properties ] "
-
-        private static readonly string EVENT_LOG_NAME = "WebLog";
-
+        
         /// <summary>
-        /// The string log file path
+        /// The string log file path.
         /// </summary>
         private static string _strLogFilePath = string.Empty;
 
@@ -71,9 +64,9 @@ namespace Utils.ErrorLogger
             try
             {
                 // get the base directory
-                //string baseDir = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.RelativeSearchPath;
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.RelativeSearchPath;
 
-                string baseDir = Path.Combine(LogFilePath, "Logs");
+                baseDir = Path.Combine(baseDir, "Logs");
                 // search the file below the current directory
                 if (!Directory.Exists(baseDir))
                 {
@@ -182,78 +175,17 @@ namespace Utils.ErrorLogger
             }
             return bReturn;
         }
-
-
+        
         #endregion
 
         #region " [ Publish ] "
-
-        /// <summary>
-        /// Adds the log to window event.
-        /// Write error log entry for window event if the bLogType is true. Otherwise, write the log entry to
-        /// customized text-based text file
-        /// </summary>
-        /// <param name="objException">The object exception.</param>
-        /// <returns>
-        /// false if the problem persists
-        /// </returns>
-        public static bool AddLogToWindowEvent(Exception objException)
-        {
-            try
-            {
-                //Write to Windows event log
-                if (!EventLog.SourceExists(EVENT_LOG_NAME))
-                    EventLog.CreateEventSource(objException.Message, EVENT_LOG_NAME);
-
-                // Inserting into event log
-                EventLog log = new EventLog { Source = EVENT_LOG_NAME };
-                log.WriteEntry(objException.Message, EventLogEntryType.Error);
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Adds the log to window event.
-        /// </summary>
-        /// <param name="objException">The object exception.</param>
-        /// <param name="eventLogName">Name of the event log.</param>
-        /// <param name="entryType">Type of the entry.</param>
-        public static void AddLogToWindowEvent(Exception objException, string eventLogName, EventLogEntryType entryType)
-        {
-            var logName = eventLogName ?? "";
-            EventLog log = new EventLog { Source = logName };
-            try
-            {
-                if (!EventLog.SourceExists(logName))
-                    EventLog.CreateEventSource(objException.Message, logName);
-
-                // Inserting into event log
-                log.WriteEntry(objException.Message, entryType);
-            }
-            catch (Exception ex)
-            {
-                log.Source = logName;
-                log.WriteEntry(Convert.ToString("INFORMATION: ")
-                                      + Convert.ToString(ex.Message),
-                EventLogEntryType.Information);
-            }
-            finally
-            {
-                log.Dispose();
-            }
-        }
 
         /// <summary>
         /// This Is created in order to maintain Additional infomation in the seperate file path and for clear visibility
         /// </summary>
         /// <param name="logDescription">The log description.</param>
         /// <returns></returns>
-        public static bool AddInfoLogToFile(string logDescription)
+        public static bool OutputLog(string logDescription)
         {
             string strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
@@ -286,7 +218,7 @@ namespace Utils.ErrorLogger
         /// <param name="AdditionInforDescription">The log description. [User define]</param>
         /// <param name="objException"> Exception object </param>
         /// <returns></returns>
-        public static bool AddErrorLogToFile(string AdditionInforDescription, Exception objException)
+        public static bool OutputLog(string AdditionInforDescription, Exception objException)
         {
             string strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
@@ -310,42 +242,6 @@ namespace Utils.ErrorLogger
 
             bool bReturn = WriteErrorLog(strAddlogPathName, objException, AdditionInforDescription, false);
             return bReturn;
-        }
-
-        /// <summary>
-        /// Adds the log in Database.
-        /// Not body function
-        /// </summary>
-        /// <param name="logDescription">The log description.</param>
-        /// <param name="logType">Type of the log.</param>
-        /// <param name="siteId">The site identifier.</param>
-        /// <param name="siteType">Type of the site.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="methodName">Name of the method.</param>
-        /// <param name="objException">The object exception.</param>
-        /// <param name="userId">The user identifier.</param>
-        public static void AddLogToDb(string logDescription, string logType, int? siteId, string siteType, string fileName, string methodName, Exception objException, int userId)
-        {
-            IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
-            //using (var context = new StandardDataLibraryEntities())
-            //{
-            //    //App Type = Site type 1) web 2) WebAPI 3) WindowService
-            //    var objXmlLog = new GMALog
-            //    {
-            //        SiteId = siteId,
-            //        AppType = siteType,
-            //        LogType = logType,
-            //        FileSection = fileName,
-            //        MethodName = methodName,
-            //        LogDescription = logDescription + "<br /> " + objException,
-            //        Status = (int)Status.Active,
-            //        IPAddress = "IPv4 Address : " + ips[1],
-            //        CreatedBy = userId,
-            //        CreatedOnUtc = DateTime.Now
-            //    };
-            //    context.GMALogs.Add(objXmlLog);
-            //    context.SaveChanges();
-            //}
         }
 
         #endregion

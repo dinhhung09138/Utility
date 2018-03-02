@@ -54,7 +54,11 @@
     <Compile Include="Common.cs" />
     <Compile Include="CommonModel\ErrorModel.cs" />
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
-    <Compile Include="ErrorLogger\ErrorLog.cs" />
+    <Compile Include="Database\DatabaseConstant.cs" />
+    <Compile Include="Database\DatabaseExecute.cs" />
+    <Compile Include="ErrorLogger\DatabaseLogger.cs" />
+    <Compile Include="ErrorLogger\TextLogger.cs" />
+    <Compile Include="ErrorLogger\WindowsLogger.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="Email\Email.cs" />
     <Compile Include="JqueryDatatable\Column.cs" />
