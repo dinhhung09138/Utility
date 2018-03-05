@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Utils.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +55,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="CommonModel\ErrorModel.cs" />
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
+    <Compile Include="Constant\FormatValue.cs" />
     <Compile Include="Database\DatabaseConstant.cs" />
     <Compile Include="Database\DatabaseExecute.cs" />
     <Compile Include="ErrorLogger\DatabaseLogger.cs" />
