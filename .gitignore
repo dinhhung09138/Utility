@@ -88,3 +88,15 @@ UtilityApp/\.vs/UtilityApp/v15/Server/sqlite3/storage\.ide
 UtilityApp/\.vs/UtilityApp/v15/Server/sqlite3/db\.lock
 
 UtilityApp/\.vs/UtilityApp/v15/
+
+UtilityApp/packages/jQuery\.1\.6\.4/Content/Scripts/
+
+UtilityApp/packages/Microsoft\.AspNet\.SignalR\.JS\.2\.2\.2/content/Scripts/
+
+UtilityApp/packages/jQuery\.1\.6\.4/Tools/
+
+UtilityApp/Utils/packages\.config
+
+UtilityApp/Utils/Utils\.csproj
+
+UtilityApp/Utils/Utils\.csproj\.user
