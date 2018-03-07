@@ -68,3 +68,23 @@ UtilityApp/Utils\.SignalRNotification/bin/Debug/
 UtilityApp/Utils/obj/Debug/
 
 UtilityApp/Utils/bin/Debug/
+
+UtilityApp/packages/Microsoft\.AspNet\.WebPages\.3\.2\.4/lib/net45/
+
+UtilityApp/packages/Microsoft\.AspNet\.WebPages\.3\.2\.4/
+
+UtilityApp/packages/Microsoft\.Web\.Infrastructure\.1\.0\.0\.0/
+
+UtilityApp/packages/Microsoft\.AspNet\.Mvc\.5\.2\.4/Content/
+
+UtilityApp/packages/Microsoft\.AspNet\.Razor\.3\.2\.4/lib/net45/
+
+UtilityApp/packages/Microsoft\.AspNet\.Mvc\.5\.2\.4/
+
+UtilityApp/packages/Microsoft\.AspNet\.Razor\.3\.2\.4/
+
+UtilityApp/\.vs/UtilityApp/v15/Server/sqlite3/storage\.ide
+
+UtilityApp/\.vs/UtilityApp/v15/Server/sqlite3/db\.lock
+
+UtilityApp/\.vs/UtilityApp/v15/
