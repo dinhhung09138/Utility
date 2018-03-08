@@ -7,7 +7,7 @@ namespace Utils.ErrorLogger
     /// <summary>
     /// For log error and information in file and in database.
     /// </summary>
-    public class TextLogger
+    public static class TextLogger
     {
         #region " [ Properties ] "
         
@@ -224,7 +224,7 @@ namespace Utils.ErrorLogger
             if (LogFilePath.Equals(string.Empty))
             {
                 //Get Default log file path "LogFile.txt"
-                strAddlogPathName = GetLogFilePath(true);
+                strAddlogPathName = GetLogFilePath(false);
             }
             else
             {

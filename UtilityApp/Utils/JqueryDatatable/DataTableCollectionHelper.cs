@@ -5,7 +5,7 @@ using System.Linq;
 namespace Utils.JqueryDatatable
 {
     /// <summary>
-    /// 
+    /// Datatable collection helper
     /// </summary>
     public static class DataTableCollectionHelper
     {

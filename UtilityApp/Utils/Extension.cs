@@ -13,13 +13,8 @@ namespace Utils
         /// <summary>
         /// Default number format #,###
         /// </summary>
-        private static readonly string NUMBER_FORMAT = "#,###";
-
-        /// <summary>
-        /// Default decimal format #,###.#
-        /// </summary>
-        private static readonly string DECIMAL_FORMAT = "#,###.#";
-
+        private static readonly string NUMBER_FORMAT = "#,##0";
+        
         /// <summary>
         /// Default date format dd/MM/yyyy
         /// </summary>
@@ -121,6 +116,26 @@ namespace Utils
             if (span.Seconds <= 5)
                 return "vừa " + actionName;
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Return full time format
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>dd/MM/yyyy HH:mm:ss</returns>
+        public static string FullTimeString(this DateTime date)
+        {
+            return date.ToString(FULLTIME_FORMAT);
+        }
+
+        /// <summary>
+        /// Return full time format
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>HH:mm:ss</returns>
+        public static string TimeString(this DateTime date)
+        {
+            return date.ToString(TIME_FORMAT);
         }
 
         #endregion

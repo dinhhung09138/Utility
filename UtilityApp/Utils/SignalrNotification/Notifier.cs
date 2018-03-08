@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Threading.Tasks;
+using Utils.ErrorLogger;
 
 namespace Utils.SignalRNotification
 {
@@ -9,6 +10,53 @@ namespace Utils.SignalRNotification
     /// </summary>
     public class Notifier
     {
+        /// <summary>
+        /// Init error message
+        /// </summary>
+        private class Error
+        {
+            /// <summary>
+            /// Error message for Send function 01
+            /// </summary>
+            public static string E01 = "Send function with 1 parameter";
+
+            /// <summary>
+            /// Error message for Send function 02
+            /// </summary>
+            public static string E02 = "Send function with 2 parameters";
+
+            /// <summary>
+            /// Error message for Send function 03
+            /// </summary>
+            public static string E03 = "Send function with 3 parameters";
+
+            /// <summary>
+            /// Error message for Send function 04
+            /// </summary>
+            public static string E04 = "Send function with 4 parameters";
+
+            /// <summary>
+            /// Error message for Send function 05
+            /// </summary>
+            public static string E05 = "Send function with 5 parameters";
+
+            /// <summary>
+            /// Error message for Send function 06
+            /// </summary>
+            public static string E06 = "Send function with 6 parameters";
+
+            /// <summary>
+            /// Error message for Send function 07
+            /// </summary>
+            public static string E07 = "Send function with 7 parameters";
+
+            /// <summary>
+            /// Error message for Send function 08
+            /// </summary>
+            public static string E08 = "Send function with 8 parameters";
+
+        }
+
         /// <summary>
         /// Site url to connect to hub
         /// </summary>
@@ -56,7 +104,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E01, ex);
             }
         }
 
@@ -78,7 +126,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E02, ex);
             }
         }
 
@@ -101,7 +149,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E03, ex);
             }
         }
 
@@ -125,7 +173,8 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E04, ex);
+
             }
         }
 
@@ -150,7 +199,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E05, ex);
             }
         }
 
@@ -176,7 +225,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E06, ex);
             }
         }
 
@@ -203,7 +252,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E07, ex);
             }
         }
 
@@ -231,7 +280,7 @@ namespace Utils.SignalRNotification
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error");
+                TextLogger.OutputLog(Error.E08, ex);
             }
         }
     }

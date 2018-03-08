@@ -9,12 +9,24 @@ using Utils.ErrorLogger;
 
 namespace Utils.Database
 {
+    /// <summary>
+    /// SQL Execute using ado.net
+    /// </summary>
     public class ADOExecute
     {
         /// <summary>
         /// Connection string
         /// </summary>
-        public static string SqlConnectionStr = "";
+        private static string SqlConnectionStr = "";
+
+        /// <summary>
+        /// Set connect string
+        /// </summary>
+        /// <param name="connectionStr">connect string</param>
+        public void SetConnectionString(string connectionStr)
+        {
+            SqlConnectionStr = connectionStr;
+        }
 
         /// <summary>
         /// Open sql connection
@@ -130,6 +142,12 @@ namespace Utils.Database
             }
         }
 
+        /// <summary>
+        /// Get data from database using store. Return a datatable
+        /// </summary>
+        /// <param name="strStore">Store name</param>
+        /// <param name="prams">List of Sql parameters</param>
+        /// <returns>Datatable</returns>
         public static DataTable ReturnDataTable(string strStore, SqlParameter[] prams)
         {
             using (SqlConnection myconn = GetConnectionString())
@@ -143,6 +161,13 @@ namespace Utils.Database
             }
         }
         
+        /// <summary>
+        /// Create command
+        /// </summary>
+        /// <param name="strStore">store name</param>
+        /// <param name="myconn">SQL connect</param>
+        /// <param name="param">List of sql parameters</param>
+        /// <returns>SqlCommand</returns>
         private static SqlCommand CreateCommand(string strStore, SqlConnection myconn, SqlParameter[] param)
         {
             SqlCommand mycommand = new SqlCommand(strStore, myconn);
@@ -157,6 +182,15 @@ namespace Utils.Database
             return mycommand;
         }
         
+        /// <summary>
+        /// Create a Sql Parameter
+        /// </summary>
+        /// <param name="ParamName">Parameter's name</param>
+        /// <param name="SqlDbType">Type</param>
+        /// <param name="Size">Size of value</param>
+        /// <param name="direction">Direction, input or output</param>
+        /// <param name="value">Value of parameter</param>
+        /// <returns>SqlParamter</returns>
         public static SqlParameter AddParameter(string ParamName, SqlDbType SqlDbType, int Size, ParameterDirection direction, object value)
         {
             SqlParameter param;

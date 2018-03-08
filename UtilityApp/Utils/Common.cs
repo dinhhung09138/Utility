@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
+    /// <summary>
+    /// Init common value
+    /// </summary>
     public class Common
     {
         /// <summary>

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Utils.ErrorLogger
 {
+    /// <summary>
+    /// Window logger
+    /// </summary>
     public class WindowsLogger
     {
         #region " [ Properties ] "

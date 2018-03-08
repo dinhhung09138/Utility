@@ -3,6 +3,9 @@ using System.Net;
 
 namespace Utils.ErrorLogger
 {
+    /// <summary>
+    /// Write log to database class
+    /// </summary>
     public class DatabaseLogger
     {
         /// <summary>

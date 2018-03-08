@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using Utils.ErrorLogger;
 
 namespace Utils.Email
 {
@@ -9,6 +10,22 @@ namespace Utils.Email
     /// </summary>
     public class Email
     {
+        /// <summary>
+        /// INit error message
+        /// </summary>
+        private class Error
+        {
+            /// <summary>
+            /// Error message for SendMail function 01
+            /// </summary>
+            public static string E01 = "Sendemail function with default configuration";
+
+            /// <summary>
+            /// Error message for SendMail function 02
+            /// </summary>
+            public static string E02 = "Sendemail function with input configuration";
+        }
+
         /// <summary>
         /// Host name
         /// Default: smtp.gmail.com
@@ -66,8 +83,9 @@ namespace Utils.Email
                     return 1;
                 }
             }
-            catch (Exception ee)
+            catch (Exception ex)
             {
+                TextLogger.OutputLog(Error.E01, ex);
                 return 0;
             }
         }
@@ -107,8 +125,9 @@ namespace Utils.Email
                     return 1;
                 }
             }
-            catch (Exception ee)
+            catch (Exception ex)
             {
+                TextLogger.OutputLog(Error.E01, ex);
                 return 0;
             }
         }

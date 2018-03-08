@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authorization\UserAuthorization.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="CommonModel\ErrorModel.cs" />
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />

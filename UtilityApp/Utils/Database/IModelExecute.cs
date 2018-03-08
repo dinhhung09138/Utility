@@ -13,34 +13,34 @@ namespace Utils.Database
     public interface IModelExecute<T> where T : class
     {
         /// <summary>
-        /// 
+        /// Get all item
         /// </summary>
         /// <returns></returns>
         IEnumerable<T> GetALL();
         
         /// <summary>
-        /// 
+        /// Get item by id
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">Model</param>
         /// <returns></returns>
         T GetItemByID(T model);
 
         /// <summary>
-        /// 
+        /// Save item
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         ResponseStatusCode Save(T model);
 
         /// <summary>
-        /// 
+        /// Publish item
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         ResponseStatusCode Publish(T model);
 
         /// <summary>
-        /// 
+        /// Delete item
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
