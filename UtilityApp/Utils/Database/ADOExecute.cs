@@ -205,5 +205,22 @@ namespace Utils.Database
             return param;
         }
         
+        public static int ExecuteNonquery(string queryString)
+        {
+            try
+            {
+                using (SqlConnection myconn = GetConnectionString())
+                {
+                    SqlCommand cmd = new SqlCommand(queryString, myconn);
+                    cmd.CommandType = CommandType.Text;
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception ex)
+            {
+                TextLogger.OutputLog("ExecuteNonquery", ex);
+            }
+            return -1;
+        }
     }
 }

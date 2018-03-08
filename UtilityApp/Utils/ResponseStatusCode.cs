@@ -24,6 +24,16 @@ namespace Utils
         /// <summary>
         /// Whan to tell user know have some notification or something
         /// </summary>
-        Warning
+        Warning,
+
+        /// <summary>
+        /// Status is allow
+        /// </summary>
+        OK,
+
+        /// <summary>
+        /// Status is disallow
+        /// </summary>
+        NG
     }
 }

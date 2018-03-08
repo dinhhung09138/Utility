@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Text;
+using Utils.Database;
 
 namespace Utils.ErrorLogger
 {
@@ -8,21 +10,42 @@ namespace Utils.ErrorLogger
     /// </summary>
     public class DatabaseLogger
     {
+        private static readonly string TABLE_NAME = "SYS_ERROR_LOGGING";
         /// <summary>
-        /// Adds the log in Database.
-        /// Not body function
+        /// Write log to Database
         /// </summary>
-        /// <param name="logDescription">The log description.</param>
-        /// <param name="logType">Type of the log.</param>
-        /// <param name="siteId">The site identifier.</param>
-        /// <param name="siteType">Type of the site.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="methodName">Name of the method.</param>
-        /// <param name="objException">The object exception.</param>
-        /// <param name="userId">The user identifier.</param>
-        public static void OutputLog(string logDescription, string logType, int? siteId, string siteType, string fileName, string methodName, Exception objException, int userId)
+        /// <param name="controller"></param>
+        /// <param name="action"></param>
+        /// <param name="fileName"></param>
+        /// <param name="methodName"></param>
+        /// <param name="objException"></param>
+        /// <param name="userId"></param>
+        public static void OutputLog(string controller, string action, string fileName, string methodName, Exception objException, string userId)
         {
-            IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
+            StringBuilder query = new StringBuilder();
+            query.Append("INSERT INTO [SYS_ERROR_LOGGING] ");
+            query.Append("  ( ");
+            query.Append("      [Id], ");
+            query.Append("      [Controller], ");
+            query.Append("      [Action], ");
+            query.Append("      [FileName], ");
+            query.Append("      [MethodName], ");
+            query.Append("      [Description], ");
+            query.Append("      [UserId], ");
+            query.Append("      [CreatedDate] ");
+            query.Append("  ) ");
+            query.Append("VALUES ");
+            query.Append("  ( ");
+            query.Append("      '" + Guid.NewGuid() + "', ");
+            query.Append("      '" + controller + "', ");
+            query.Append("      '" + action + "', ");
+            query.Append("      '" + fileName + "', ");
+            query.Append("      '" + objException.Message + "', ");
+            query.Append("      '" + DateTime.Now + "', ");
+            query.Append("      '" + userId + "'");
+            query.Append("  ) ");
+            Database.ADOExecute.ExecuteNonquery(query.ToString());
+            //IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
             //using (var context = new StandardDataLibraryEntities())
             //{
             //    //App Type = Site type 1) web 2) WebAPI 3) WindowService
