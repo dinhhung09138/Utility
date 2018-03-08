@@ -11,7 +11,7 @@ namespace Utils.Email
     {
         /// <summary>
         /// Host name
-        /// Default: smtp.gmail.com<
+        /// Default: smtp.gmail.com
         /// </summary>
         public static string HOST = "smtp.gmail.com";
 
@@ -42,7 +42,7 @@ namespace Utils.Email
         /// <param name="password">Password of send from email</param>
         /// <param name="emailTo">Sent to</param>
         /// <param name="mailsubject">subject</param>
-        /// <param name="getMailBody">body</param>
+        /// <param name="mailBody">body</param>
         /// <returns>1/0</returns>
         public static int Sendemail(string email, string password, string emailTo, string mailsubject, string mailBody)
         {
@@ -83,7 +83,7 @@ namespace Utils.Email
         /// <param name="password">Password of send from email</param>
         /// <param name="emailTo">Sent to</param>
         /// <param name="mailsubject">subject</param>
-        /// <param name="getMailBody">body</param>
+        /// <param name="mailBody">body</param>
         /// <returns>1/0</returns>
         public static int Sendemail(string host, int port, bool enableSSL, bool useDefaultCredentials, string email, string password, string emailTo, string mailsubject, string mailBody)
         {

@@ -9,7 +9,7 @@ using Utils.ErrorLogger;
 
 namespace Utils.Database
 {
-    public class DatabaseExecute
+    public class ADOExecute
     {
         /// <summary>
         /// Connection string
