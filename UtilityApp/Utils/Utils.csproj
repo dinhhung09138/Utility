@@ -56,8 +56,9 @@
     <Compile Include="CommonModel\ErrorModel.cs" />
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
     <Compile Include="Constant\FormatValue.cs" />
+    <Compile Include="Database\ADOExecute.cs" />
     <Compile Include="Database\DatabaseConstant.cs" />
-    <Compile Include="Database\DatabaseExecute.cs" />
+    <Compile Include="Database\IModelExecute.cs" />
     <Compile Include="ErrorLogger\DatabaseLogger.cs" />
     <Compile Include="ErrorLogger\TextLogger.cs" />
     <Compile Include="ErrorLogger\WindowsLogger.cs" />
@@ -82,9 +83,6 @@
     <Compile Include="SignalrNotification\Notifier.cs" />
     <Compile Include="CommonModel\UserLoginModel.cs" />
     <Compile Include="Validation\RegularValidation.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extension\" />
