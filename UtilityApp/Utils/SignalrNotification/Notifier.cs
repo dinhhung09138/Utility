@@ -12,14 +12,32 @@ namespace Utils.SignalRNotification
         /// <summary>
         /// Site url to connect to hub
         /// </summary>
-        public static string SITE_BASE_URL = "";
+        private static string SITE_BASE_URL = "";
+
+        /// <summary>
+        /// Set default api url
+        /// </summary>
+        /// <param name="url">api url</param>
+        public void SetBaseUrl(string url)
+        {
+            SITE_BASE_URL = url;
+        }
 
         /// <summary>
         /// Hub name.. 
         /// This is config in website
         /// Default is SignalrHub
         /// </summary>
-        public static string HUB_NAME = "SignalrHub";
+        private static string HUB_NAME = "SignalrHub";
+
+        /// <summary>
+        /// Set default hub name
+        /// </summary>
+        /// <param name="hubName">Hub name</param>
+        public void SetHubName(string hubName)
+        {
+            HUB_NAME = hubName;
+        }
 
         /// <summary>
         /// Call function to send notification

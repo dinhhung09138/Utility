@@ -13,9 +13,16 @@ namespace Utils.Validation
     /// </summary>
     public static class RegularValidation
     {
-
+        /// <summary>
+        /// Invalid state
+        /// </summary>
         static bool invalid = false;
 
+        /// <summary>
+        /// Check isvalid email
+        /// </summary>
+        /// <param name="strIn">Email string input</param>
+        /// <returns>true/false</returns>
         public static bool IsValidEmail(this string strIn)
         {
             invalid = false;
@@ -50,6 +57,12 @@ namespace Utils.Validation
             }
         }
 
+        /// <summary>
+        /// Check domain
+        /// Not use Now
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
         private static string DomainMapper(Match match)
         {
             // IdnMapping class with default property values.

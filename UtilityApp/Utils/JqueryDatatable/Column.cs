@@ -24,6 +24,9 @@ namespace Utils.JqueryDatatable
         /// </summary>
         public bool Orderable { get; set; }
 
+        /// <summary>
+        /// Column data in jquery datatable
+        /// </summary>
         public Column()
         {
             this.Data = "";

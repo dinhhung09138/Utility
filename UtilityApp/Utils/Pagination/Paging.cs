@@ -38,6 +38,14 @@ namespace Utils.Pagination
             public static string EN = "Page";
         }
         
+        /// <summary>
+        /// Paging
+        /// </summary>
+        /// <param name="currenPage">number of current page</param>
+        /// <param name="totalRow">Total data row count</param>
+        /// <param name="url">url to move other page</param>
+        /// <param name="lg">language</param>
+        /// <returns>html string of pagination</returns>
         public static string Pagination(int currenPage, int totalRow, string url, Language lg)
         {
             if (totalRow == 0)
@@ -149,6 +157,15 @@ namespace Utils.Pagination
             return strLabel + _strNav;
         }
 
+        /// <summary>
+        /// Paging
+        /// </summary>
+        /// <param name="currenPage">number of current page</param>
+        /// <param name="totalRow">Total data row count</param>
+        /// <param name="url">url to move other page</param>
+        /// <param name="lg">language</param>
+        /// <param name="maxRow">Max row in page</param>
+        /// <returns>html string of pagination</returns>
         public static string Pagination(int currenPage, int totalRow, string url, Language lg, int maxRow)
         {
             int PAGINATION_PER_PAGE = maxRow;

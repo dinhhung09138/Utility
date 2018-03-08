@@ -11,8 +11,19 @@ namespace Utils
     /// </summary>
     public enum ResponseStatusCode
     {
+
+        /// <summary>
+        /// Return success when execute action is success
+        /// </summary>
         Success,
+        /// <summary>
+        /// Return error when execute action is error
+        /// </summary>
         Error,
+
+        /// <summary>
+        /// Whan to tell user know have some notification or something
+        /// </summary>
         Warning
     }
 }
