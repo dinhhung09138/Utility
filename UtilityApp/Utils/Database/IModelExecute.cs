@@ -24,7 +24,7 @@ namespace Utils.Database
         /// Get all item
         /// </summary>
         /// <returns>IEnumerable</returns>
-        IEnumerable<T> GetALL();
+        List<T> GetALL();
         
         /// <summary>
         /// Get item by id

@@ -25,5 +25,20 @@ namespace Utils.CommonModel
         /// Avatar
         /// </summary>
         public string Avatar { get; set; }
+
+        /// <summary>
+        /// Session id
+        /// </summary>
+        public string SessionID { get; set; }
+
+        /// <summary>
+        /// Token string
+        /// </summary>
+        public string Token { get; set; }
+
+        /// <summary>
+        /// Second
+        /// </summary>
+        public long ExpireTime { get; set; }
     }
 }
