@@ -10,6 +10,10 @@ namespace Utils.ErrorLogger
     /// </summary>
     public class DatabaseLogger
     {
+        /// <summary>
+        /// Table name
+        /// Use for write log
+        /// </summary>
         private static readonly string TABLE_NAME = "SYS_ERROR_LOGGING";
         /// <summary>
         /// Write log to Database
