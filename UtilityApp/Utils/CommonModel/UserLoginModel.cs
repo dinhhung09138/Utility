@@ -39,6 +39,6 @@ namespace Utils.CommonModel
         /// <summary>
         /// Second
         /// </summary>
-        public long ExpireTime { get; set; }
+        public DateTime ExpireTime { get; set; }
     }
 }

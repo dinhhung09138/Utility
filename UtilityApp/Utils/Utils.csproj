@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="CommonModel\ErrorModel.cs" />
+    <Compile Include="CommonModel\ExecuteResultModel.cs" />
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
     <Compile Include="Constant\FormatValue.cs" />
     <Compile Include="Database\ADOExecute.cs" />

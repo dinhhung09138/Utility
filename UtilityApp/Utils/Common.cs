@@ -15,6 +15,10 @@ namespace Utils
         /// Session name for user data after login
         /// </summary>
         public static readonly string SESSION_LOGIN_NAME = "UserProfile";
-        
+
+        /// <summary>
+        /// This name declared for set a parameter to give a model response to transfer between actions
+        /// </summary>
+        public static readonly string EXECUTE_RESULT = "ExecuteResult";
     }
 }
