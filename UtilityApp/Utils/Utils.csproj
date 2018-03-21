@@ -65,6 +65,7 @@
     <Compile Include="Extension.cs" />
     <Compile Include="Email\Email.cs" />
     <Compile Include="JqueryDatatable\Column.cs" />
+    <Compile Include="JqueryDatatable\DatatableCommonSetting.cs" />
     <Compile Include="JqueryDatatable\CustomDataTableRequest.cs" />
     <Compile Include="JqueryDatatable\DataTableCollectionHelper.cs" />
     <Compile Include="JqueryDatatable\DataTableRequest.cs" />
