@@ -20,5 +20,26 @@ namespace Utils
         /// This name declared for set a parameter to give a model response to transfer between actions
         /// </summary>
         public static readonly string EXECUTE_RESULT = "ExecuteResult";
+
+        /// <summary>
+        /// Type of exception
+        /// </summary>
+        public enum ExceptionType
+        {
+            /// <summary>
+            /// Forbiden
+            /// </summary>
+            Forbiden,
+
+            /// <summary>
+            /// /Error
+            /// </summary>
+            Error,
+
+            /// <summary>
+            /// Not found
+            /// </summary>
+            NotFound
+        }
     }
 }
