@@ -10,7 +10,7 @@ namespace Utils.ErrorLogger
     /// <summary>
     /// Window logger
     /// </summary>
-    public class WindowsLogger
+    public class WindowsLoggerHelper
     {
         #region " [ Properties ] "
 
@@ -36,8 +36,8 @@ namespace Utils.ErrorLogger
                     EventLog.CreateEventSource(objException.Message, EVENT_LOG_NAME);
 
                 // Inserting into event log
-                EventLog log = new EventLog { Source = EVENT_LOG_NAME };
-                log.WriteEntry(objException.Message, EventLogEntryType.Error);
+                EventLog _log = new EventLog { Source = EVENT_LOG_NAME };
+                _log.WriteEntry(objException.Message, EventLogEntryType.Error);
 
                 return true;
             }
@@ -55,26 +55,26 @@ namespace Utils.ErrorLogger
         /// <param name="entryType">Type of the entry.</param>
         public static void OutputLog(Exception objException, string eventLogName, EventLogEntryType entryType)
         {
-            var logName = eventLogName ?? "";
-            EventLog log = new EventLog { Source = logName };
+            var _logName = eventLogName ?? "";
+            EventLog _log = new EventLog { Source = _logName };
             try
             {
-                if (!EventLog.SourceExists(logName))
-                    EventLog.CreateEventSource(objException.Message, logName);
+                if (!EventLog.SourceExists(_logName))
+                    EventLog.CreateEventSource(objException.Message, _logName);
 
                 // Inserting into event log
-                log.WriteEntry(objException.Message, entryType);
+                _log.WriteEntry(objException.Message, entryType);
             }
             catch (Exception ex)
             {
-                log.Source = logName;
-                log.WriteEntry(Convert.ToString("INFORMATION: ")
+                _log.Source = _logName;
+                _log.WriteEntry(Convert.ToString("INFORMATION: ")
                                       + Convert.ToString(ex.Message),
                 EventLogEntryType.Information);
             }
             finally
             {
-                log.Dispose();
+                _log.Dispose();
             }
         }
 

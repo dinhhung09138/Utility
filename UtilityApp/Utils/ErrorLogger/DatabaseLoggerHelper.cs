@@ -8,7 +8,7 @@ namespace Utils.ErrorLogger
     /// <summary>
     /// Write log to database class
     /// </summary>
-    public class DatabaseLogger
+    public class DatabaseLoggerHelper
     {
         /// <summary>
         /// Table name
@@ -26,29 +26,29 @@ namespace Utils.ErrorLogger
         /// <param name="userId"></param>
         public static void OutputLog(string controller, string action, string fileName, string methodName, Exception objException, string userId)
         {
-            StringBuilder query = new StringBuilder();
-            query.Append("INSERT INTO [SYS_ERROR_LOGGING] ");
-            query.Append("  ( ");
-            query.Append("      [Id], ");
-            query.Append("      [Controller], ");
-            query.Append("      [Action], ");
-            query.Append("      [FileName], ");
-            query.Append("      [MethodName], ");
-            query.Append("      [Description], ");
-            query.Append("      [UserId], ");
-            query.Append("      [CreatedDate] ");
-            query.Append("  ) ");
-            query.Append("VALUES ");
-            query.Append("  ( ");
-            query.Append("      '" + Guid.NewGuid() + "', ");
-            query.Append("      '" + controller + "', ");
-            query.Append("      '" + action + "', ");
-            query.Append("      '" + fileName + "', ");
-            query.Append("      '" + objException.Message + "', ");
-            query.Append("      '" + DateTime.Now + "', ");
-            query.Append("      '" + userId + "'");
-            query.Append("  ) ");
-            Database.ADOExecute.ExecuteNonquery(query.ToString());
+            StringBuilder _query = new StringBuilder();
+            _query.Append("INSERT INTO [SYS_ERROR_LOGGING] ");
+            _query.Append("  ( ");
+            _query.Append("      [Id], ");
+            _query.Append("      [Controller], ");
+            _query.Append("      [Action], ");
+            _query.Append("      [FileName], ");
+            _query.Append("      [MethodName], ");
+            _query.Append("      [Description], ");
+            _query.Append("      [UserId], ");
+            _query.Append("      [CreatedDate] ");
+            _query.Append("  ) ");
+            _query.Append("VALUES ");
+            _query.Append("  ( ");
+            _query.Append("      '" + Guid.NewGuid() + "', ");
+            _query.Append("      '" + controller + "', ");
+            _query.Append("      '" + action + "', ");
+            _query.Append("      '" + fileName + "', ");
+            _query.Append("      '" + objException.Message + "', ");
+            _query.Append("      '" + DateTime.Now + "', ");
+            _query.Append("      '" + userId + "'");
+            _query.Append("  ) ");
+            ADOExecuteHelper.ExecuteNonquery(_query.ToString());
             //IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
             //using (var context = new StandardDataLibraryEntities())
             //{

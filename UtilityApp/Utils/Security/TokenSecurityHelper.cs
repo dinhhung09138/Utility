@@ -7,7 +7,7 @@ namespace Utils.Security
     /// <summary>
     /// Token-based authentication for ASP .NET MVC REST web services.
     /// </summary>
-    public static class TokenSecurity
+    public static class TokenSecurityHelper
     {
 
         #region " [ Initializations & Declarations ] "
@@ -47,20 +47,20 @@ namespace Utils.Security
         /// </returns>
         public static string GenerateToken(string username, string password, string ip, string userAgent, long ticks)
         {
-            string hash = string.Join(":", username, ip, userAgent, ticks.ToString());
-            string hashLeft;
-            string hashRight;
+            string _hash = string.Join(":", username, ip, userAgent, ticks.ToString());
+            string _hashLeft;
+            string _hashRight;
 
             using (HMAC hmac = HMAC.Create(Alg))
             {
-                hmac.Key = Encoding.UTF8.GetBytes(PasswordSecurity.GetHashedPassword(password));
-                hmac.ComputeHash(Encoding.UTF8.GetBytes(hash));
+                hmac.Key = Encoding.UTF8.GetBytes(PasswordSecurityHelper.GetHashedPassword(password));
+                hmac.ComputeHash(Encoding.UTF8.GetBytes(_hash));
 
-                hashLeft = Convert.ToBase64String(hmac.Hash);
-                hashRight = string.Join(":", username, ticks.ToString());
+                _hashLeft = Convert.ToBase64String(hmac.Hash);
+                _hashRight = string.Join(":", username, ticks.ToString());
             }
 
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Join(":", hashLeft, hashRight)));
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Join(":", _hashLeft, _hashRight)));
         }
 
         /// <summary>
@@ -74,48 +74,48 @@ namespace Utils.Security
         /// </returns>
         public static bool IsTokenValid(string token, string ip, string userAgent)
         {
-            bool result = false;
+            bool _result = false;
 
             try
             {
                 if (token == "vRXprdlJCekFDa2FwZlFpQnJteE1zNTVJaTM5dXRpSTZRa1NlYm41WWFPUT06am9objo2MzU4MDMyNzUxMDk1MTAwMDA=")
                 {
-                    result = true;
+                    _result = true;
                 }
                 else
                 {
                     // Base64 decode the string, obtaining the token:username:timeStamp.
-                    string key = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+                    string _key = Encoding.UTF8.GetString(Convert.FromBase64String(token));
 
                     // Split the parts.
-                    string[] parts = key.Split(':');
-                    if (parts.Length == 3)
+                    string[] _parts = _key.Split(':');
+                    if (_parts.Length == 3)
                     {
                         ////TODO : Required when mobile side token security done.
                         // Get the hash message, username, and timestamp.
                         //string hash = parts[0];
-                        string username = parts[1];
-                        long ticks = long.Parse(parts[2]);
-                        DateTime timeStamp = new DateTime(ticks);
+                        string _username = _parts[1];
+                        long _ticks = long.Parse(_parts[2]);
+                        DateTime _timeStamp = new DateTime(_ticks);
 
                         // Ensure the timestamp is valid.
-                        bool expired = Math.Abs((DateTime.UtcNow - timeStamp).TotalMinutes) > ExpirationMinutes;
-                        if (!expired)
+                        bool _expired = Math.Abs((DateTime.UtcNow - _timeStamp).TotalMinutes) > ExpirationMinutes;
+                        if (!_expired)
                         {
                             //
                             // Lookup the user's account from the db.
                             //
-                            if (username == "john")
+                            if (_username == "john")
                             {
-                                const string password = "password";
+                                const string _password = "password";
 
                                 // Hash the message with the key to generate a token.
-                                string computedToken = GenerateToken(username, password, ip, userAgent, ticks);
+                                string computedToken = GenerateToken(_username, _password, ip, userAgent, _ticks);
 
                                 // Compare the computed token with the one supplied and ensure they match.
                                 if (token == computedToken)
                                 {
-                                    result = true;
+                                    _result = true;
                                 }
                             }
                         }
@@ -127,7 +127,7 @@ namespace Utils.Security
                 Console.WriteLine(ex.Message);
             }
 
-            return result;
+            return _result;
         }
 
     }

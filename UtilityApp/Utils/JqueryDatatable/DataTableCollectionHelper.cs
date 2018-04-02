@@ -18,9 +18,9 @@ namespace Utils.JqueryDatatable
         /// <param name="dir"></param>
         /// <param name="keySelector"></param>
         /// <returns></returns>
-        public static IOrderedEnumerable<TSource> Sort<TSource, TKey>(this IEnumerable<TSource> items, SortingDirection dir, Func<TSource, TKey> keySelector)
+        public static IOrderedEnumerable<TSource> Sort<TSource, TKey>(this IEnumerable<TSource> items, SortingDirectionHelper dir, Func<TSource, TKey> keySelector)
         {
-            if (dir == SortingDirection.Asc)
+            if (dir == SortingDirectionHelper.Asc)
             {
                 return items.OrderBy(keySelector);
             }
@@ -33,7 +33,7 @@ namespace Utils.JqueryDatatable
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static DataTableRequest SetOrderingColumnName(this DataTableRequest item)
+        public static DataTableRequestHelper SetOrderingColumnName(this DataTableRequestHelper item)
         {
             for (int i = 0; i < item.order.Count; i++)
             {
@@ -48,7 +48,7 @@ namespace Utils.JqueryDatatable
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static CustomDataTableRequest SetOrderingColumnName(this CustomDataTableRequest item)
+        public static CustomDataTableRequestHelper SetOrderingColumnName(this CustomDataTableRequestHelper item)
         {
             for (int i = 0; i < item.order.Count; i++)
             {

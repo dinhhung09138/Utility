@@ -7,19 +7,19 @@ namespace Utils.ErrorLogger
     /// <summary>
     /// For log error and information in file and in database.
     /// </summary>
-    public static class TextLogger
+    public static class TextLoggerHelper
     {
         #region " [ Properties ] "
         
         /// <summary>
         /// The string log file path.
         /// </summary>
-        private static string _strLogFilePath = string.Empty;
+        private static string strLogFilePath = string.Empty;
 
         /// <summary>
         /// The sw
         /// </summary>
-        private static StreamWriter _sw;
+        private static StreamWriter sw;
 
         /// <summary>
         /// Setting LogFile path. If the logfile path is null then it will update error info into LogFile.txt under
@@ -32,20 +32,20 @@ namespace Utils.ErrorLogger
         {
             set
             {
-                _strLogFilePath = value;
-                string pathWithoutFilename = Path.GetDirectoryName(_strLogFilePath);
+                strLogFilePath = value;
+                string pathWithoutFilename = Path.GetDirectoryName(strLogFilePath);
                 if (!Directory.Exists(pathWithoutFilename))
                 {
                     Directory.CreateDirectory(pathWithoutFilename);
                 }
-                if (!File.Exists(_strLogFilePath))
+                if (!File.Exists(strLogFilePath))
                 {
-                    File.Create(_strLogFilePath);
+                    File.Create(strLogFilePath);
                 }
             }
             get
             {
-                return _strLogFilePath;
+                return strLogFilePath;
             }
         }
 
@@ -64,38 +64,38 @@ namespace Utils.ErrorLogger
             try
             {
                 // get the base directory
-                string baseDir = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.RelativeSearchPath;
+                string _baseDir = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.RelativeSearchPath;
 
-                baseDir = Path.Combine(baseDir, "Logs");
+                _baseDir = Path.Combine(_baseDir, "Logs");
                 // search the file below the current directory
-                if (!Directory.Exists(baseDir))
+                if (!Directory.Exists(_baseDir))
                 {
-                    Directory.CreateDirectory(baseDir);
+                    Directory.CreateDirectory(_baseDir);
                 }
-                string retFilePath = "";
+                string _retFilePath = "";
                 if (infoLog)
                 {
-                    retFilePath = Path.Combine(baseDir, "InforLog.txt");
+                    _retFilePath = Path.Combine(_baseDir, "InforLog.txt");
                 }
                 else
                 {
-                    retFilePath = Path.Combine(baseDir, "ErrorLog.txt");
+                    _retFilePath = Path.Combine(_baseDir, "ErrorLog.txt");
                 }
 
                 // if exists, return the path
-                if (File.Exists(retFilePath))
-                    return retFilePath;
+                if (File.Exists(_retFilePath))
+                    return _retFilePath;
                 //create a text file
                 else
                 {
-                    if (!CheckDirectory(retFilePath))
+                    if (!CheckDirectory(_retFilePath))
                         return string.Empty;
 
-                    FileStream fs = new FileStream(retFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    FileStream fs = new FileStream(_retFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                     fs.Close();
                 }
 
-                return retFilePath;
+                return _retFilePath;
             }
             catch (Exception)
             {
@@ -112,11 +112,11 @@ namespace Utils.ErrorLogger
         {
             try
             {
-                int nFindSlashPos = strLogPath.Trim().LastIndexOf("\\", StringComparison.Ordinal);
-                string strDirectoryname = strLogPath.Trim().Substring(0, nFindSlashPos);
+                int _nFindSlashPos = strLogPath.Trim().LastIndexOf("\\", StringComparison.Ordinal);
+                string _strDirectoryname = strLogPath.Trim().Substring(0, _nFindSlashPos);
 
-                if (!Directory.Exists(strDirectoryname))
-                    Directory.CreateDirectory(strDirectoryname);
+                if (!Directory.Exists(_strDirectoryname))
+                    Directory.CreateDirectory(_strDirectoryname);
 
                 return true;
             }
@@ -137,43 +137,43 @@ namespace Utils.ErrorLogger
         /// <returns></returns>
         private static bool WriteErrorLog(string strPathName, Exception objException, string additionalinfo, bool isException)
         {
-            bool bReturn;
+            bool _bReturn;
 
             try
             {
-                IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
+                IPAddress[] _ips = Dns.GetHostAddresses(Dns.GetHostName());
 
-                _sw = new StreamWriter(strPathName, true);
+                sw = new StreamWriter(strPathName, true);
                 if (isException)
                 {
-                    _sw.WriteLine("Source		: " + objException.Source.Trim());
-                    _sw.WriteLine("Method		: " + objException.TargetSite.Name);
-                    _sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
-                    _sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
-                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
-                    _sw.WriteLine("Error		: " + objException.Message.Trim());
-                    _sw.WriteLine("Stack Trace	: " + objException.StackTrace.Trim());
-                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
+                    sw.WriteLine("Source		: " + objException.Source.Trim());
+                    sw.WriteLine("Method		: " + objException.TargetSite.Name);
+                    sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
+                    sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
+                    sw.WriteLine("Computer	: " + Dns.GetHostName());
+                    sw.WriteLine("Link-local IPv6 Address: " + _ips[0] + " IPv4 Address : " + _ips[1]);
+                    sw.WriteLine("Error		: " + objException.Message.Trim());
+                    sw.WriteLine("Stack Trace	: " + objException.StackTrace.Trim());
+                    sw.WriteLine("^^-------------------------------------------------------------------^^");
                 }
                 else
                 {
-                    _sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
-                    _sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
-                    _sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    _sw.WriteLine("Link-local IPv6 Address: " + ips[0] + " IPv4 Address : " + ips[1]);
-                    _sw.WriteLine("Additional Info		: " + additionalinfo.Trim());
-                    _sw.WriteLine("^^-------------------------------------------------------------------^^");
+                    sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
+                    sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
+                    sw.WriteLine("Computer	: " + Dns.GetHostName());
+                    sw.WriteLine("Link-local IPv6 Address: " + _ips[0] + " IPv4 Address : " + _ips[1]);
+                    sw.WriteLine("Additional Info		: " + additionalinfo.Trim());
+                    sw.WriteLine("^^-------------------------------------------------------------------^^");
                 }
-                _sw.Flush();
-                _sw.Close();
-                bReturn = true;
+                sw.Flush();
+                sw.Close();
+                _bReturn = true;
             }
             catch (Exception)
             {
-                bReturn = false;
+                _bReturn = false;
             }
-            return bReturn;
+            return _bReturn;
         }
         
         #endregion
@@ -187,11 +187,11 @@ namespace Utils.ErrorLogger
         /// <returns></returns>
         public static bool OutputLog(string logDescription)
         {
-            string strAddlogPathName;
+            string _strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
             {
                 //Get Default log file path "LogFile.txt"
-                strAddlogPathName = GetLogFilePath(true);
+                _strAddlogPathName = GetLogFilePath(true);
             }
             else
             {
@@ -204,11 +204,11 @@ namespace Utils.ErrorLogger
                     FileStream fs = new FileStream(LogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                     fs.Close();
                 }
-                strAddlogPathName = LogFilePath;
+                _strAddlogPathName = LogFilePath;
             }
 
             Exception ex = new Exception();
-            bool bReturn = WriteErrorLog(strAddlogPathName, ex, logDescription, false);
+            bool bReturn = WriteErrorLog(_strAddlogPathName, ex, logDescription, false);
             return bReturn;
         }
 
@@ -220,11 +220,11 @@ namespace Utils.ErrorLogger
         /// <returns></returns>
         public static bool OutputLog(string AdditionInforDescription, Exception objException)
         {
-            string strAddlogPathName;
+            string _strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
             {
                 //Get Default log file path "LogFile.txt"
-                strAddlogPathName = GetLogFilePath(false);
+                _strAddlogPathName = GetLogFilePath(false);
             }
             else
             {
@@ -237,10 +237,10 @@ namespace Utils.ErrorLogger
                     FileStream fs = new FileStream(LogFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                     fs.Close();
                 }
-                strAddlogPathName = LogFilePath;
+                _strAddlogPathName = LogFilePath;
             }
 
-            bool bReturn = WriteErrorLog(strAddlogPathName, objException, AdditionInforDescription, false);
+            bool bReturn = WriteErrorLog(_strAddlogPathName, objException, AdditionInforDescription, false);
             return bReturn;
         }
 

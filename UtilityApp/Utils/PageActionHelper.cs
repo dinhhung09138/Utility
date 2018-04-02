@@ -9,7 +9,7 @@ namespace Utils
     /// <summary>
     /// Action name on page
     /// </summary>
-    public enum PageAction
+    public enum PageActionHelper
     {
         /// <summary>
         /// View action

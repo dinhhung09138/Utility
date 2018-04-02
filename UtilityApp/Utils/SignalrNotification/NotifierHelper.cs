@@ -96,15 +96,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E01, ex);
+                TextLoggerHelper.OutputLog(Error.E01, ex);
             }
         }
 
@@ -118,15 +118,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E02, ex);
+                TextLoggerHelper.OutputLog(Error.E02, ex);
             }
         }
 
@@ -141,15 +141,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E03, ex);
+                TextLoggerHelper.OutputLog(Error.E03, ex);
             }
         }
 
@@ -165,15 +165,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2, value_3);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2, value_3);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E04, ex);
+                TextLoggerHelper.OutputLog(Error.E04, ex);
 
             }
         }
@@ -191,15 +191,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2, value_3, value_4);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2, value_3, value_4);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E05, ex);
+                TextLoggerHelper.OutputLog(Error.E05, ex);
             }
         }
 
@@ -217,15 +217,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E06, ex);
+                TextLoggerHelper.OutputLog(Error.E06, ex);
             }
         }
 
@@ -244,15 +244,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5, value_6);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5, value_6);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E07, ex);
+                TextLoggerHelper.OutputLog(Error.E07, ex);
             }
         }
 
@@ -272,15 +272,15 @@ namespace Utils.SignalRNotification
         {
             try
             {
-                var hubConnection = new HubConnection(SITE_BASE_URL);
-                IHubProxy myHub = hubConnection.CreateHubProxy(HUB_NAME);
-                hubConnection.Start().Wait();
-                await myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5, value_6, value_7);
-                hubConnection.Stop();
+                var _hubConnection = new HubConnection(SITE_BASE_URL);
+                IHubProxy _myHub = _hubConnection.CreateHubProxy(HUB_NAME);
+                _hubConnection.Start().Wait();
+                await _myHub.Invoke(functionName, value_1, value_2, value_3, value_4, value_5, value_6, value_7);
+                _hubConnection.Stop();
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E08, ex);
+                TextLoggerHelper.OutputLog(Error.E08, ex);
             }
         }
     }

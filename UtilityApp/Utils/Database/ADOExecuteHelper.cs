@@ -12,7 +12,7 @@ namespace Utils.Database
     /// <summary>
     /// SQL Execute using ado.net
     /// </summary>
-    public class ADOExecute
+    public class ADOExecuteHelper
     {
         /// <summary>
         /// Connection string
@@ -34,11 +34,11 @@ namespace Utils.Database
         /// <returns>SqlConnection</returns>
         private static SqlConnection GetConnectionString()
         {
-            SqlConnection myConn = new SqlConnection(SqlConnectionStr);
-            if (myConn.State == ConnectionState.Open)
-                myConn.Close();
-            myConn.Open();
-            return myConn;
+            SqlConnection _myConn = new SqlConnection(SqlConnectionStr);
+            if (_myConn.State == ConnectionState.Open)
+                _myConn.Close();
+            _myConn.Open();
+            return _myConn;
         }
 
         /// <summary>
@@ -55,14 +55,14 @@ namespace Utils.Database
             {
                 using (SqlConnection myconn = GetConnectionString())
                 {
-                    SqlCommand mycommand = new SqlCommand(strQuery, myconn);
-                    mycommand.CommandType = CommandType.Text;
-                    return Convert.ToString(mycommand.ExecuteScalar());
+                    SqlCommand _mycommand = new SqlCommand(strQuery, myconn);
+                    _mycommand.CommandType = CommandType.Text;
+                    return Convert.ToString(_mycommand.ExecuteScalar());
                 }
             }
             catch(Exception ex)
             {
-                TextLogger.OutputLog(DatabaseConstant.Erorr.SCALA_ERROR, ex);
+                TextLoggerHelper.OutputLog(DatabaseConstant.Erorr.SCALA_ERROR, ex);
                 return null;
             }
         }
@@ -77,10 +77,10 @@ namespace Utils.Database
         {
             using (SqlConnection myconn = GetConnectionString())
             {
-                SqlDataAdapter adp = new SqlDataAdapter(strQuery, myconn);
-                DataSet ds = new DataSet();
-                adp.Fill(ds, strTable);
-                return ds;
+                SqlDataAdapter _adp = new SqlDataAdapter(strQuery, myconn);
+                DataSet _ds = new DataSet();
+                _adp.Fill(_ds, strTable);
+                return _ds;
             }
         }
 
@@ -96,18 +96,18 @@ namespace Utils.Database
             {
                 using (SqlConnection myconn = GetConnectionString())
                 {
-                    SqlDataAdapter adp = new SqlDataAdapter(strStore, myconn);
-                    DataSet ds = new DataSet();
-                    adp.Fill(ds);
-                    if (ds.Tables.Count > 0)
-                        return ds.Tables[0];
+                    SqlDataAdapter _adp = new SqlDataAdapter(strStore, myconn);
+                    DataSet _ds = new DataSet();
+                    _adp.Fill(_ds);
+                    if (_ds.Tables.Count > 0)
+                        return _ds.Tables[0];
                     else
                         return null;
                 }
             }
             catch(Exception ex)
             {
-                TextLogger.OutputLog("TODO", ex);
+                TextLoggerHelper.OutputLog("TODO", ex);
                 return null;
             }
         }
@@ -126,18 +126,18 @@ namespace Utils.Database
             {
                 using (SqlConnection myconn = GetConnectionString())
                 {
-                    SqlDataAdapter adp = new SqlDataAdapter(strStore, myconn);
-                    DataSet ds = new DataSet();
-                    adp.Fill(ds);
-                    if (ds.Tables.Count > 0)
-                        return ds.Tables[0];
+                    SqlDataAdapter _adp = new SqlDataAdapter(strStore, myconn);
+                    DataSet _ds = new DataSet();
+                    _adp.Fill(_ds);
+                    if (_ds.Tables.Count > 0)
+                        return _ds.Tables[0];
                     else
                         return null;
                 }
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog("TODO", ex);
+                TextLoggerHelper.OutputLog("TODO", ex);
                 return null;
             }
         }
@@ -152,12 +152,12 @@ namespace Utils.Database
         {
             using (SqlConnection myconn = GetConnectionString())
             {
-                SqlCommand mycommand = CreateCommand(strStore, myconn, prams);
-                DataTable dt = new DataTable();
-                DataSet ds = new DataSet();
-                SqlDataAdapter adp = new SqlDataAdapter(mycommand);
-                adp.Fill(dt);
-                return dt;
+                SqlCommand _mycommand = CreateCommand(strStore, myconn, prams);
+                DataTable _dt = new DataTable();
+                DataSet _ds = new DataSet();
+                SqlDataAdapter _adp = new SqlDataAdapter(_mycommand);
+                _adp.Fill(_dt);
+                return _dt;
             }
         }
         
@@ -170,16 +170,16 @@ namespace Utils.Database
         /// <returns>SqlCommand</returns>
         private static SqlCommand CreateCommand(string strStore, SqlConnection myconn, SqlParameter[] param)
         {
-            SqlCommand mycommand = new SqlCommand(strStore, myconn);
-            mycommand.CommandType = CommandType.StoredProcedure;
+            SqlCommand _mycommand = new SqlCommand(strStore, myconn);
+            _mycommand.CommandType = CommandType.StoredProcedure;
             if (param != null)
             {
                 foreach (SqlParameter p in param)
                 {
-                    mycommand.Parameters.Add(p);
+                    _mycommand.Parameters.Add(p);
                 }
             }
-            return mycommand;
+            return _mycommand;
         }
         
         /// <summary>
@@ -193,32 +193,37 @@ namespace Utils.Database
         /// <returns>SqlParamter</returns>
         public static SqlParameter AddParameter(string ParamName, SqlDbType SqlDbType, int Size, ParameterDirection direction, object value)
         {
-            SqlParameter param;
+            SqlParameter _param;
             if (Size > 0)
-                param = new SqlParameter(ParamName, SqlDbType, Size);
+                _param = new SqlParameter(ParamName, SqlDbType, Size);
             else
-                param = new SqlParameter(ParamName, SqlDbType);
-            param.Direction = direction;
+                _param = new SqlParameter(ParamName, SqlDbType);
+            _param.Direction = direction;
             if (!(direction == ParameterDirection.Output && value == null))
-                param.Value = value;
+                _param.Value = value;
 
-            return param;
+            return _param;
         }
         
+        /// <summary>
+        /// Execute a query string
+        /// </summary>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
         public static int ExecuteNonquery(string queryString)
         {
             try
             {
                 using (SqlConnection myconn = GetConnectionString())
                 {
-                    SqlCommand cmd = new SqlCommand(queryString, myconn);
-                    cmd.CommandType = CommandType.Text;
-                    return cmd.ExecuteNonQuery();
+                    SqlCommand _cmd = new SqlCommand(queryString, myconn);
+                    _cmd.CommandType = CommandType.Text;
+                    return _cmd.ExecuteNonQuery();
                 }
             }
             catch(Exception ex)
             {
-                TextLogger.OutputLog("ExecuteNonquery", ex);
+                TextLoggerHelper.OutputLog("ExecuteNonquery", ex);
             }
             return -1;
         }

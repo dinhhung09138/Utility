@@ -8,7 +8,7 @@ namespace Utils.CommonModel
     public class ExecuteResultModel
     {
         //Status code
-        public ResponseStatusCode Status { get; set; } = ResponseStatusCode.Error;
+        public ResponseStatusCodeHelper Status { get; set; } = ResponseStatusCodeHelper.Error;
 
         /// <summary>
         /// Message

@@ -5,7 +5,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// Jquery datatable Request from client
     /// </summary>
-    public class DataTableRequest
+    public class DataTableRequestHelper
     {
         /// <summary>
         /// draw
@@ -25,16 +25,16 @@ namespace Utils.JqueryDatatable
         /// <summary>
         /// order
         /// </summary>
-        public List<Ordering> order { get; set; }
+        public List<OrderingHelper> order { get; set; }
 
         /// <summary>
         /// search
         /// </summary>
-        public Search search { get; set; }
+        public SearchHelper search { get; set; }
 
         /// <summary>
         /// columns
         /// </summary>
-        public List<Column> columns { get; set; }
+        public List<ColumnHelper> columns { get; set; }
     }
 }

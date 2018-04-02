@@ -4,7 +4,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// Sort direction
     /// </summary>
-    public enum SortingDirection
+    public enum SortingDirectionHelper
     {
         /// <summary>
         /// Ascessding

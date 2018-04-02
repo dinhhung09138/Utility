@@ -46,21 +46,21 @@ namespace Utils.Security
         /// </returns>
         private static string CommonMethodForEncryptData(string data, string lockKey)
         {
-            byte[] results;
-            var utf8 = new UTF8Encoding();
+            byte[] _results;
+            var _utf8 = new UTF8Encoding();
             using (var hashProvider = new MD5CryptoServiceProvider())
             {
-                var tdesKey = hashProvider.ComputeHash(utf8.GetBytes(lockKey));
+                var _tdesKey = hashProvider.ComputeHash(_utf8.GetBytes(lockKey));
                 using (var tdesAlgorithm = new TripleDESCryptoServiceProvider())
                 {
-                    tdesAlgorithm.Key = tdesKey;
+                    tdesAlgorithm.Key = _tdesKey;
                     tdesAlgorithm.Mode = CipherMode.ECB;
                     tdesAlgorithm.Padding = PaddingMode.PKCS7;
-                    byte[] dataToEncrypt = utf8.GetBytes(data);
+                    byte[] dataToEncrypt = _utf8.GetBytes(data);
                     try
                     {
                         var encryptor = tdesAlgorithm.CreateEncryptor();
-                        results = encryptor.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
+                        _results = encryptor.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
                     }
                     finally
                     {
@@ -70,7 +70,7 @@ namespace Utils.Security
                 }
             }
 
-            return Convert.ToBase64String(results);
+            return Convert.ToBase64String(_results);
         }
 
         #endregion
@@ -112,21 +112,21 @@ namespace Utils.Security
         /// </returns>
         private static string CommonMethodForDecryptData(string data, string lockKey)
         {
-            byte[] results;
-            var utf8 = new UTF8Encoding();
+            byte[] _results;
+            var _utf8 = new UTF8Encoding();
             using (var hashProvider = new MD5CryptoServiceProvider())
             {
-                var tdesKey = hashProvider.ComputeHash(utf8.GetBytes(lockKey));
+                var _tdesKey = hashProvider.ComputeHash(_utf8.GetBytes(lockKey));
                 using (var tdesAlgorithm = new TripleDESCryptoServiceProvider())
                 {
-                    tdesAlgorithm.Key = tdesKey;
+                    tdesAlgorithm.Key = _tdesKey;
                     tdesAlgorithm.Mode = CipherMode.ECB;
                     tdesAlgorithm.Padding = PaddingMode.PKCS7;
                     var dataToDecrypt = Convert.FromBase64String(data);
                     try
                     {
                         ICryptoTransform decryptor = tdesAlgorithm.CreateDecryptor();
-                        results = decryptor.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
+                        _results = decryptor.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
                     }
                     finally
                     {
@@ -136,7 +136,7 @@ namespace Utils.Security
                 }
             }
 
-            return utf8.GetString(results);
+            return _utf8.GetString(_results);
         }
 
         #endregion

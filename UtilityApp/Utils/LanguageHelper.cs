@@ -4,7 +4,7 @@ namespace Utils
     /// <summary>
     /// Language default value
     /// </summary>
-    public enum Language
+    public enum LanguageHelper
     {
         /// <summary>
         /// Vietnamese

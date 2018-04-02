@@ -11,7 +11,7 @@ namespace Utils.Validation
     /// <summary>
     /// Regular validation function class
     /// </summary>
-    public static class RegularValidation
+    public static class RegularValidationHelper
     {
         /// <summary>
         /// Invalid state
@@ -66,18 +66,18 @@ namespace Utils.Validation
         private static string DomainMapper(Match match)
         {
             // IdnMapping class with default property values.
-            IdnMapping idn = new IdnMapping();
+            IdnMapping _idn = new IdnMapping();
 
-            string domainName = match.Groups[2].Value;
+            string _domainName = match.Groups[2].Value;
             try
             {
-                domainName = idn.GetAscii(domainName);
+                _domainName = _idn.GetAscii(_domainName);
             }
             catch (ArgumentException)
             {
                 invalid = true;
             }
-            return match.Groups[1].Value + domainName;
+            return match.Groups[1].Value + _domainName;
         }
     }
 }

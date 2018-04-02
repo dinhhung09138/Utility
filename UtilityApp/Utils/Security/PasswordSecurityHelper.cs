@@ -7,7 +7,7 @@ namespace Utils.Security
     /// <summary>
     /// Class PasswordSecurity.
     /// </summary>
-    public static class PasswordSecurity
+    public static class PasswordSecurityHelper
     {
         #region " [ Initializations & Declarations ] "
 
@@ -32,24 +32,24 @@ namespace Utils.Security
         /// </returns>
         public static string GetHashedPassword(string password)
         {
-            string key = string.Join(":", password, Salt);
+            string _key = string.Join(":", password, Salt);
 
             using (HMAC hmac = HMAC.Create(Alg))
             {
                 // Hash the key.
                 hmac.Key = Encoding.UTF8.GetBytes(Salt);
-                hmac.ComputeHash(Encoding.UTF8.GetBytes(key));
+                hmac.ComputeHash(Encoding.UTF8.GetBytes(_key));
 
-                StringBuilder builder = new StringBuilder();
+                StringBuilder _builder = new StringBuilder();
                 foreach (byte num in hmac.Hash)
                 {
-                    builder.AppendFormat("{0:X2}", num);
+                    _builder.AppendFormat("{0:X2}", num);
                 }
 
-                var convertBuilder = Encoding.UTF8.GetBytes(builder.ToString());
+                var _convertBuilder = Encoding.UTF8.GetBytes(_builder.ToString());
 
                 //return Convert.ToBase64String(hmac.Hash);
-                return Convert.ToBase64String(convertBuilder);
+                return Convert.ToBase64String(_convertBuilder);
             }
         }
         

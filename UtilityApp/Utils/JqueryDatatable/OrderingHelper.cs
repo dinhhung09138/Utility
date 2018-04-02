@@ -4,7 +4,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// Ordering data columns
     /// </summary>
-    public class Ordering
+    public class OrderingHelper
     {
         /// <summary>
         /// order column on table
@@ -18,6 +18,6 @@ namespace Utils.JqueryDatatable
         /// <summary>
         /// Direction
         /// </summary>
-        public SortingDirection Dir { get; set; }
+        public SortingDirectionHelper Dir { get; set; }
     }
 }

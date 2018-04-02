@@ -5,7 +5,7 @@ namespace Utils
     /// <summary>
     /// Extension class
     /// </summary>
-    public static class Extension
+    public static class ExtensionHelper
     {
 
         #region " [ Properties ] "

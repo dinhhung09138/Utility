@@ -8,7 +8,7 @@ namespace Utils.Email
     /// <summary>
     /// Email
     /// </summary>
-    public class Email
+    public class EmailHelper
     {
         /// <summary>
         /// INit error message
@@ -70,22 +70,22 @@ namespace Utils.Email
                     mail.Subject = mailsubject;
                     mail.Body = mailBody;
                     mail.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient
+                    SmtpClient _smtp = new SmtpClient
                     {
                         Host = HOST,
                         EnableSsl = ENABLE_SSL
                     };
-                    NetworkCredential networkCredential = new NetworkCredential(email, password);
-                    smtp.UseDefaultCredentials = USE_DEFAULT_CREDENTIALS;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = PORT;
-                    smtp.Send(mail);
+                    NetworkCredential _networkCredential = new NetworkCredential(email, password);
+                    _smtp.UseDefaultCredentials = USE_DEFAULT_CREDENTIALS;
+                    _smtp.Credentials = _networkCredential;
+                    _smtp.Port = PORT;
+                    _smtp.Send(mail);
                     return 1;
                 }
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E01, ex);
+                TextLoggerHelper.OutputLog(Error.E01, ex);
                 return 0;
             }
         }
@@ -112,22 +112,22 @@ namespace Utils.Email
                     mail.Subject = mailsubject;
                     mail.Body = mailBody;
                     mail.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient
+                    SmtpClient _smtp = new SmtpClient
                     {
                         Host = host,
                         EnableSsl = enableSSL
                     };
-                    NetworkCredential networkCredential = new NetworkCredential(email, password);
-                    smtp.UseDefaultCredentials = useDefaultCredentials;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = port;
-                    smtp.Send(mail);
+                    NetworkCredential _networkCredential = new NetworkCredential(email, password);
+                    _smtp.UseDefaultCredentials = useDefaultCredentials;
+                    _smtp.Credentials = _networkCredential;
+                    _smtp.Port = port;
+                    _smtp.Send(mail);
                     return 1;
                 }
             }
             catch (Exception ex)
             {
-                TextLogger.OutputLog(Error.E01, ex);
+                TextLoggerHelper.OutputLog(Error.E01, ex);
                 return 0;
             }
         }

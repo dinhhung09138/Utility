@@ -4,7 +4,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// Search content
     /// </summary>
-    public class Search
+    public class SearchHelper
     {
         /// <summary>
         /// String value

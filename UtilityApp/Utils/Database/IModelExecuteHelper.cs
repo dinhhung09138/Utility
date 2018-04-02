@@ -18,7 +18,7 @@ namespace Utils.Database
         /// </summary>
         /// <param name="request">CustomDataTableRequest</param>
         /// <returns>Dictionary</returns>
-        Dictionary<string, object> List(CustomDataTableRequest request);
+        Dictionary<string, object> List(CustomDataTableRequestHelper request);
 
         /// <summary>
         /// Get all item
@@ -38,27 +38,27 @@ namespace Utils.Database
         /// </summary>
         /// <param name="model">T</param>
         /// <returns>Success/Error</returns>
-        ResponseStatusCode Save(T model);
+        ResponseStatusCodeHelper Save(T model);
 
         /// <summary>
         /// Publish item
         /// </summary>
         /// <param name="model">T</param>
         /// <returns>Success/Error</returns>
-        ResponseStatusCode Publish(T model);
+        ResponseStatusCodeHelper Publish(T model);
 
         /// <summary>
         /// Delete item
         /// </summary>
         /// <param name="model">T</param>
         /// <returns>Success/Error</returns>
-        ResponseStatusCode Delete(T model);
+        ResponseStatusCodeHelper Delete(T model);
 
         /// <summary>
         /// Check before execute delete item
         /// </summary>
         /// <param name="model">T</param>
         /// <returns>OK/NG</returns>
-        ResponseStatusCode CheckDeleteItem(T model);
+        ResponseStatusCodeHelper CheckDeleteItem(T model);
     }
 }

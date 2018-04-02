@@ -9,7 +9,7 @@ namespace Utils
     /// <summary>
     /// Init common value
     /// </summary>
-    public class Common
+    public class CommonHelper
     {
         /// <summary>
         /// Session name for user data after login

@@ -4,7 +4,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// List of column of datatable
     /// </summary>
-    public class Column
+    public class ColumnHelper
     {
         /// <summary>
         /// Name of column map with column's name in data object
@@ -27,7 +27,7 @@ namespace Utils.JqueryDatatable
         /// <summary>
         /// Column data in jquery datatable
         /// </summary>
-        public Column()
+        public ColumnHelper()
         {
             this.Data = "";
             this.Name = "";

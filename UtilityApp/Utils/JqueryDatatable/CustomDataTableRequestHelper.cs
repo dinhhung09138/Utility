@@ -4,7 +4,7 @@ namespace Utils.JqueryDatatable
     /// <summary>
     /// Use for some cases user want to have some variable included into parameter of jquery datatable
     /// </summary>
-    public class CustomDataTableRequest : DataTableRequest
+    public class CustomDataTableRequestHelper : DataTableRequestHelper
     {
         /// <summary>
         /// Custom table parameter string
