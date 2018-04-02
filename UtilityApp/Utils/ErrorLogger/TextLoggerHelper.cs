@@ -150,8 +150,6 @@ namespace Utils.ErrorLogger
                     sw.WriteLine("Method		: " + objException.TargetSite.Name);
                     sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
                     sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
-                    sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    sw.WriteLine("Link-local IPv6 Address: " + _ips[0] + " IPv4 Address : " + _ips[1]);
                     sw.WriteLine("Error		: " + objException.Message.Trim());
                     sw.WriteLine("Stack Trace	: " + objException.StackTrace.Trim());
                     sw.WriteLine("^^-------------------------------------------------------------------^^");
@@ -161,7 +159,6 @@ namespace Utils.ErrorLogger
                     sw.WriteLine("Date		: " + DateTime.Now.ToShortDateString());
                     sw.WriteLine("Time		: " + DateTime.Now.ToLongTimeString());
                     sw.WriteLine("Computer	: " + Dns.GetHostName());
-                    sw.WriteLine("Link-local IPv6 Address: " + _ips[0] + " IPv4 Address : " + _ips[1]);
                     sw.WriteLine("Additional Info		: " + additionalinfo.Trim());
                     sw.WriteLine("^^-------------------------------------------------------------------^^");
                 }

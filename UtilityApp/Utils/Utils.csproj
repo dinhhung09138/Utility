@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
@@ -62,8 +66,17 @@
     <Compile Include="ErrorLogger\DatabaseLoggerHelper.cs" />
     <Compile Include="ErrorLogger\TextLoggerHelper.cs" />
     <Compile Include="ErrorLogger\WindowsLoggerHelper.cs" />
+    <Compile Include="ExportExcel\ExcelBorderDetailModel.cs" />
+    <Compile Include="ExportExcel\ExcelContentModel.cs" />
+    <Compile Include="ExportExcel\ExcelDataDetailModel.cs" />
+    <Compile Include="ExportExcel\ExcelFromatingDetailModel.cs" />
+    <Compile Include="ExportExcel\ExcelHelper.cs" />
+    <Compile Include="ExportExcel\ExcelHorizontalDetailModel.cs" />
+    <Compile Include="ExportExcel\ExcelMergeDetailModel.cs" />
+    <Compile Include="ExportExcel\ExcelVerticalDetailModel.cs" />
     <Compile Include="ExtensionHelper.cs" />
     <Compile Include="Email\EmailHelper.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="JqueryDatatable\ColumnHelper.cs" />
     <Compile Include="JqueryDatatable\DatatableCommonSetting.cs" />
     <Compile Include="JqueryDatatable\CustomDataTableRequestHelper.cs" />
@@ -84,9 +97,14 @@
     <Compile Include="SignalrNotification\NotifierHelper.cs" />
     <Compile Include="CommonModel\UserLoginModel.cs" />
     <Compile Include="Validation\RegularValidationHelper.cs" />
+    <Compile Include="XmlExtensionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extension\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\EPPlus.dll" />
+    <Content Include="Libs\EPPlus.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
