@@ -18,7 +18,7 @@
         /// <summary>
         /// Value in a cell
         /// </summary>
-        public object Value { get; set; } = "";
+        public object Value { get; set; } = string.Empty;
 
         /// <summary>
         /// Bold

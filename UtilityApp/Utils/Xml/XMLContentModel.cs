@@ -10,12 +10,12 @@ namespace Utils.Xml
         /// <summary>
         /// Root name
         /// </summary>
-        public string RootName { get; set; } = "";
+        public string RootName { get; set; } = string.Empty;
 
         /// <summary>
         /// Comment
         /// </summary>
-        public string Comment { get; set; } = "";
+        public string Comment { get; set; } = string.Empty;
 
         /// <summary>
         /// List of node

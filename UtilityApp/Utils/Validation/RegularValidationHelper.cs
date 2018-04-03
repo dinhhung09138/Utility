@@ -12,7 +12,7 @@ namespace Utils.Validation
         /// <summary>
         /// Invalid state
         /// </summary>
-        static bool invalid = false;
+        private static bool invalid = false;
 
         /// <summary>
         /// Check isvalid email

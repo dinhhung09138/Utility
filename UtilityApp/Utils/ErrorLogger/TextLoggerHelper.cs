@@ -204,8 +204,8 @@ namespace Utils.ErrorLogger
             }
 
             Exception ex = new Exception();
-            bool bReturn = WriteErrorLog(_strAddlogPathName, ex, logDescription, false);
-            return bReturn;
+            bool _Return = WriteErrorLog(_strAddlogPathName, ex, logDescription, false);
+            return _Return;
         }
 
         /// <summary>
@@ -236,8 +236,8 @@ namespace Utils.ErrorLogger
                 _strAddlogPathName = LogFilePath;
             }
 
-            bool bReturn = WriteErrorLog(_strAddlogPathName, objException, AdditionInforDescription, false);
-            return bReturn;
+            bool _return = WriteErrorLog(_strAddlogPathName, objException, AdditionInforDescription, false);
+            return _return;
         }
 
         #endregion

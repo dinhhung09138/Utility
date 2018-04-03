@@ -1,5 +1,4 @@
-﻿using System;
-namespace Utils.CommonModel
+﻿namespace Utils.CommonModel
 {
     /// <summary>
     /// User login model
@@ -9,7 +8,7 @@ namespace Utils.CommonModel
         /// <summary>
         /// User id
         /// </summary>
-        public Guid UserID { get; set; }
+        public System.Guid UserID { get; set; }
 
         /// <summary>
         /// User name
@@ -39,6 +38,6 @@ namespace Utils.CommonModel
         /// <summary>
         /// Second
         /// </summary>
-        public DateTime ExpireTime { get; set; }
+        public System.DateTime ExpireTime { get; set; }
     }
 }

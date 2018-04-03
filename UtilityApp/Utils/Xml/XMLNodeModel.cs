@@ -15,7 +15,7 @@ namespace Utils.Xml
         /// <summary>
         /// Comment
         /// </summary>
-        public string Comment { get; set; } = "";
+        public string Comment { get; set; } = string.Empty;
 
         /// <summary>
         /// Child nodes

@@ -8,11 +8,11 @@
         /// <summary>
         /// Node name
         /// </summary>
-        public string Name { get; set; } = "";
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Node value. If has value, Node can not write child node inside
         /// </summary>
-        public string Value { get; set; } = "";
+        public string Value { get; set; } = string.Empty;
     }
 }

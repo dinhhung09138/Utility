@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-
 namespace Utils.Xml
 {
     /// <summary>
@@ -94,13 +93,13 @@ namespace Utils.Xml
             try
             {
                 _doc.Load(new StringReader(xmlContent));
-                StringBuilder _builder = new StringBuilder();
-                using (XmlTextWriter writer = new XmlTextWriter(new StringWriter(_builder)))
+                StringBuilder _Builder = new StringBuilder();
+                using (XmlTextWriter writer = new XmlTextWriter(new StringWriter(_Builder)))
                 {
                     writer.Formatting = Formatting.Indented;
                     _doc.Save(writer);
                 }
-                return _builder.ToString();
+                return _Builder.ToString();
             }
             catch (Exception ex)
             {
@@ -270,6 +269,61 @@ namespace Utils.Xml
         }
 
         /// <summary>
+        /// Remove node from xml file
+        /// </summary>
+        /// <param name="filePath">Xml file path</param>
+        /// <param name="nodePath">Node path</param>
+        /// <returns>true/false</returns>
+        public static bool RemoveNodeFromFile(this string filePath, string nodePath)
+        {
+            try
+            {
+                XmlDocument _doc = new XmlDocument();
+                _doc.Load(filePath);
+                var _item = _doc.SelectSingleNode(nodePath);
+                if (_item == null)
+                {
+                    return false;
+                }
+                _item.ParentNode.RemoveChild(_item);
+                _doc.Save(filePath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Remove node from xml content
+        /// </summary>
+        /// <param name="xmlContent">Xml content</param>
+        /// <param name="nodePath">Node path</param>
+        /// <returns>xml content</returns>
+        public static string RemoveNodeFromXmlContent(this string xmlContent, string nodePath)
+        {
+            try
+            {
+                XmlDocument _doc = new XmlDocument();
+                _doc.LoadXml(xmlContent);
+                var _item = _doc.SelectSingleNode(nodePath);
+                if (_item == null)
+                {
+                    return xmlContent;
+                }
+                _item.ParentNode.RemoveChild(_item);
+                return _doc.InnerXml.ToString();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
+            }
+            return xmlContent;
+        }
+
+        /// <summary>
         /// Write xml file
         /// </summary>
         /// <param name="filePath">file path</param>
@@ -372,61 +426,6 @@ namespace Utils.Xml
                 ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return false;
-        }
-
-        /// <summary>
-        /// Remove node from xml file
-        /// </summary>
-        /// <param name="filePath">Xml file path</param>
-        /// <param name="nodePath">Node path</param>
-        /// <returns>true/false</returns>
-        public static bool RemoveNodeFromFile(this string filePath, string nodePath)
-        {
-            try
-            {
-                XmlDocument _doc = new XmlDocument();
-                _doc.Load(filePath);
-                var _item = _doc.SelectSingleNode(nodePath);
-                if (_item == null)
-                {
-                    return false;
-                }
-                _item.ParentNode.RemoveChild(_item);
-                _doc.Save(filePath);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Remove node from xml content
-        /// </summary>
-        /// <param name="xmlContent">Xml content</param>
-        /// <param name="nodePath">Node path</param>
-        /// <returns>xml content</returns>
-        public static string RemoveNodeFromXmlContent(this string xmlContent, string nodePath)
-        {
-            try
-            {
-                XmlDocument _doc = new XmlDocument();
-                _doc.LoadXml(xmlContent);
-                var _item = _doc.SelectSingleNode(nodePath);
-                if (_item == null)
-                {
-                    return xmlContent;
-                }
-                _item.ParentNode.RemoveChild(_item);
-                return _doc.InnerXml.ToString();
-            }
-            catch (Exception ex)
-            {
-                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
-            }
-            return xmlContent;
         }
 
     }

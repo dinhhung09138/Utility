@@ -11,6 +11,7 @@ namespace Utils.SignalRNotification
     /// </summary>
     public class Notifier
     {
+
         /// <summary>
         /// Init error message
         /// </summary>
@@ -61,7 +62,7 @@ namespace Utils.SignalRNotification
         /// <summary>
         /// Site url to connect to hub
         /// </summary>
-        private static string SITE_BASE_URL = "";
+        private static string SITE_BASE_URL = string.Empty;
 
         /// <summary>
         /// Set default api url

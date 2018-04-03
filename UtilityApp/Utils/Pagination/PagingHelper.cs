@@ -17,22 +17,6 @@
         public static int PAGINATION_PER_PAGE = 5;
 
         /// <summary>
-        /// Language setting
-        /// </summary>
-        private static class PageResource
-        {
-            /// <summary>
-            /// Vietnamese
-            /// </summary>
-            public static string VN = "Trang";
-
-            /// <summary>
-            /// English
-            /// </summary>
-            public static string EN = "Page";
-        }
-
-        /// <summary>
         /// Paging function
         /// </summary>
         /// <param name="currenPage">number of current page</param>
@@ -130,7 +114,7 @@
                         }
                         _count = start;
                         _strNav += "<li class='page-prev'><a href='" + url + "1" + "'><<</a></li>";
-                        _strNav += "<li class='three-dot'><a href='" + url + "" + (_count - 1) + "'>...</a></li>";
+                        _strNav += "<li class='three-dot'><a href='" + url + string.Empty + (_count - 1) + "'>...</a></li>";
                         while (_count <= end)
                         {
                             if (_count == currenPage)
@@ -143,8 +127,8 @@
                             }
                             _count++;
                         }
-                        _strNav += "<li class='three-dot'><a href='" + url + "" + _count + "'>...</a></li>";
-                        _strNav += "<li class='page-next'><a href='" + url + "" + _totalPage + "' >>></a></li>";
+                        _strNav += "<li class='three-dot'><a href='" + url + string.Empty + _count + "'>...</a></li>";
+                        _strNav += "<li class='page-next'><a href='" + url + string.Empty + _totalPage + "' >>></a></li>";
                     }
                 }
             }
@@ -251,7 +235,7 @@
                         }
                         _count = start;
                         _strNav += "<li class='page-prev'><a href='" + url + "1" + "'><<</a></li>";
-                        _strNav += "<li class='three-dot'><a href='" + url + "" + (_count - 1) + "'>...</a></li>";
+                        _strNav += "<li class='three-dot'><a href='" + url + string.Empty + (_count - 1) + "'>...</a></li>";
                         while (_count <= end)
                         {
                             if (_count == currenPage)
@@ -264,12 +248,28 @@
                             }
                             _count++;
                         }
-                        _strNav += "<li class='three-dot'><a href='" + url + "" + _count + "'>...</a></li>";
-                        _strNav += "<li class='page-next'><a href='" + url + "" + _totalPage + "'>>></a></li>";
+                        _strNav += "<li class='three-dot'><a href='" + url + string.Empty + _count + "'>...</a></li>";
+                        _strNav += "<li class='page-next'><a href='" + url + string.Empty + _totalPage + "'>>></a></li>";
                     }
                 }
             }
             return _strLabel + _strNav;
+        }
+
+        /// <summary>
+        /// Language setting
+        /// </summary>
+        private static class PageResource
+        {
+            /// <summary>
+            /// Vietnamese
+            /// </summary>
+            public static string VN = "Trang";
+
+            /// <summary>
+            /// English
+            /// </summary>
+            public static string EN = "Page";
         }
 
     }
