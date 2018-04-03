@@ -62,73 +62,7 @@ namespace Utils.Security
 
             return Convert.ToBase64String(Encoding.UTF8.GetBytes(string.Join(":", _hashLeft, _hashRight)));
         }
-
-        /// <summary>
-        /// Checks if a token is valid.
-        /// </summary>
-        /// <param name="token">string - generated either by GenerateToken() or via client with cryptojs etc.</param>
-        /// <param name="ip">string - IP address of client, passed in by RESTAuthenticate attribute on controller.</param>
-        /// <param name="userAgent">string - user-agent of client, passed in by RESTAuthenticate attribute on controller.</param>
-        /// <returns>
-        /// bool
-        /// </returns>
-        public static bool IsTokenValid(string token, string ip, string userAgent)
-        {
-            bool _result = false;
-
-            try
-            {
-                if (token == "vRXprdlJCekFDa2FwZlFpQnJteE1zNTVJaTM5dXRpSTZRa1NlYm41WWFPUT06am9objo2MzU4MDMyNzUxMDk1MTAwMDA=")
-                {
-                    _result = true;
-                }
-                else
-                {
-                    // Base64 decode the string, obtaining the token:username:timeStamp.
-                    string _key = Encoding.UTF8.GetString(Convert.FromBase64String(token));
-
-                    // Split the parts.
-                    string[] _parts = _key.Split(':');
-                    if (_parts.Length == 3)
-                    {
-                        ////TODO : Required when mobile side token security done.
-                        // Get the hash message, username, and timestamp.
-                        //string hash = parts[0];
-                        string _username = _parts[1];
-                        long _ticks = long.Parse(_parts[2]);
-                        DateTime _timeStamp = new DateTime(_ticks);
-
-                        // Ensure the timestamp is valid.
-                        bool _expired = Math.Abs((DateTime.UtcNow - _timeStamp).TotalMinutes) > ExpirationMinutes;
-                        if (!_expired)
-                        {
-                            //
-                            // Lookup the user's account from the db.
-                            //
-                            if (_username == "john")
-                            {
-                                const string _password = "password";
-
-                                // Hash the message with the key to generate a token.
-                                string computedToken = GenerateToken(_username, _password, ip, userAgent, _ticks);
-
-                                // Compare the computed token with the one supplied and ensure they match.
-                                if (token == computedToken)
-                                {
-                                    _result = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            return _result;
-        }
+        
 
     }
 }

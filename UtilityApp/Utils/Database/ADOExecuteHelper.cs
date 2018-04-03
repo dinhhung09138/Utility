@@ -107,13 +107,13 @@ namespace Utils.Database
             }
             catch(Exception ex)
             {
-                TextLoggerHelper.OutputLog("TODO", ex);
+                TextLoggerHelper.OutputLog("", ex);
                 return null;
             }
         }
 
         /// <summary>
-        /// TODO
+        /// ReturnDataTable
         /// </summary>
         /// <param name="strStore"></param>
         /// <param name="tableName"></param>
@@ -137,7 +137,7 @@ namespace Utils.Database
             }
             catch (Exception ex)
             {
-                TextLoggerHelper.OutputLog("TODO", ex);
+                TextLoggerHelper.OutputLog("", ex);
                 return null;
             }
         }
