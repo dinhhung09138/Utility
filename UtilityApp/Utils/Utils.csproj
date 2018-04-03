@@ -97,7 +97,10 @@
     <Compile Include="SignalrNotification\NotifierHelper.cs" />
     <Compile Include="CommonModel\UserLoginModel.cs" />
     <Compile Include="Validation\RegularValidationHelper.cs" />
-    <Compile Include="XmlExtensionHelper.cs" />
+    <Compile Include="Xml\XMLContentModel.cs" />
+    <Compile Include="Xml\XmlExtensionHelper.cs" />
+    <Compile Include="Xml\XmlNodeDataModel.cs" />
+    <Compile Include="Xml\XMLNodeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extension\" />
