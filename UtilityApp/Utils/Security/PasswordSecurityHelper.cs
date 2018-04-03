@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace Utils.Security
 {
     /// <summary>
@@ -36,7 +35,7 @@ namespace Utils.Security
 
             using (HMAC hmac = HMAC.Create(Alg))
             {
-                // Hash the key.
+                //// Hash the key.
                 hmac.Key = Encoding.UTF8.GetBytes(Salt);
                 hmac.ComputeHash(Encoding.UTF8.GetBytes(_key));
 
@@ -47,8 +46,7 @@ namespace Utils.Security
                 }
 
                 var _convertBuilder = Encoding.UTF8.GetBytes(_builder.ToString());
-
-                //return Convert.ToBase64String(hmac.Hash);
+                
                 return Convert.ToBase64String(_convertBuilder);
             }
         }

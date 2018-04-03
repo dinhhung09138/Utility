@@ -1,5 +1,4 @@
-﻿
-namespace Utils.ExportExcel
+﻿namespace Utils.ExportExcel
 {
     /// <summary>
     /// Range vertical formating

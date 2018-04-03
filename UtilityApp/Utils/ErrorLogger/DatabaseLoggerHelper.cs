@@ -50,26 +50,6 @@ namespace Utils.ErrorLogger
             _query.Append("      '" + userId + "'");
             _query.Append("  ) ");
             ADOExecuteHelper.ExecuteNonquery(_query.ToString());
-            //IPAddress[] ips = Dns.GetHostAddresses(Dns.GetHostName());
-            //using (var context = new StandardDataLibraryEntities())
-            //{
-            //    //App Type = Site type 1) web 2) WebAPI 3) WindowService
-            //    var objXmlLog = new GMALog
-            //    {
-            //        SiteId = siteId,
-            //        AppType = siteType,
-            //        LogType = logType,
-            //        FileSection = fileName,
-            //        MethodName = methodName,
-            //        LogDescription = logDescription + "<br /> " + objException,
-            //        Status = (int)Status.Active,
-            //        IPAddress = "IPv4 Address : " + ips[1],
-            //        CreatedBy = userId,
-            //        CreatedOnUtc = DateTime.Now
-            //    };
-            //    context.GMALogs.Add(objXmlLog);
-            //    context.SaveChanges();
-            //}
         }
 
     }

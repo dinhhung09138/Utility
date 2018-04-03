@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Utils
 {
     /// <summary>
@@ -23,18 +18,18 @@ namespace Utils
             {
                 using (StreamReader sr = new StreamReader(filePath))
                 {
-                    String line = sr.ReadToEnd();
+                    string line = sr.ReadToEnd();
                     return line.ToString();
                 }
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             finally
             {
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>

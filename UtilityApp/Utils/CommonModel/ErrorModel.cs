@@ -1,5 +1,4 @@
-﻿
-namespace Utils.CommonModel
+﻿namespace Utils.CommonModel
 {
     /// <summary>
     /// Error model

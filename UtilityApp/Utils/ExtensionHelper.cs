@@ -88,31 +88,26 @@ namespace Utils
             TimeSpan span = DateTime.Now - dt;
             if (span.Days > 365)
             {
-                int years = (span.Days / 365);
+                int years = span.Days / 365;
                 if (span.Days % 365 != 0)
                     years += 1;
-                return actionName + String.Format(" cách đây {0} {1}",
-                years, years == 1 ? "năm" : "năm");
+                return actionName + string.Format(" cách đây {0} {1}", years, years == 1 ? "năm" : "năm");
             }
             if (span.Days > 30)
             {
-                int months = (span.Days / 30);
+                int months = span.Days / 30;
                 if (span.Days % 31 != 0)
                     months += 1;
-                return actionName + String.Format(" cách đây {0} {1}",
-                months, months == 1 ? "tháng" : "tháng");
+                return actionName + string.Format(" cách đây {0} {1}", months, months == 1 ? "tháng" : "tháng");
             }
             if (span.Days > 0)
-                return actionName + String.Format(" cách đây {0} {1}",
-                span.Days, span.Days == 1 ? "ngày" : "ngày");
+                return actionName + string.Format(" cách đây {0} {1}", span.Days, span.Days == 1 ? "ngày" : "ngày");
             if (span.Hours > 0)
-                return actionName + String.Format(" cách đây {0} {1}",
-                span.Hours, span.Hours == 1 ? "giờ" : "giờ");
+                return actionName + string.Format(" cách đây {0} {1}", span.Hours, span.Hours == 1 ? "giờ" : "giờ");
             if (span.Minutes > 0)
-                return actionName + String.Format(" cách đây {0} {1}",
-                span.Minutes, span.Minutes == 1 ? "phút" : "phút");
+                return actionName + string.Format(" cách đây {0} {1}", span.Minutes, span.Minutes == 1 ? "phút" : "phút");
             if (span.Seconds > 5)
-                return actionName + String.Format(" cách đây {0} giây", span.Seconds);
+                return actionName + string.Format(" cách đây {0} giây", span.Seconds);
             if (span.Seconds <= 5)
                 return "vừa " + actionName;
             return string.Empty;
@@ -233,7 +228,6 @@ namespace Utils
         /// <summary>
         /// Convert title string with special character to latin character.
         /// Only use in case url website, title string convert to alias.
-        /// 
         /// </summary>
         /// <param name="str">Title</param>
         /// <returns>Remove all special and unicode characters</returns>
@@ -272,7 +266,7 @@ namespace Utils
             {
                 if (str.Contains(chars[i]))
                 {
-                    str = str.Replace(chars[i], "");
+                    str = str.Replace(chars[i], string.Empty);
                 }
             }
             return str.Trim();

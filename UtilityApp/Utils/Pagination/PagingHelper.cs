@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utils.Pagination
+﻿namespace Utils.Pagination
 {
     /// <summary>
     /// Pagination
@@ -37,9 +31,9 @@ namespace Utils.Pagination
             /// </summary>
             public static string EN = "Page";
         }
-        
+
         /// <summary>
-        /// Paging
+        /// Paging function
         /// </summary>
         /// <param name="currenPage">number of current page</param>
         /// <param name="totalRow">Total data row count</param>
@@ -49,12 +43,12 @@ namespace Utils.Pagination
         public static string Pagination(int currenPage, int totalRow, string url, LanguageHelper lg)
         {
             if (totalRow == 0)
-                return "";
+                return string.Empty;
             url = url + ".htm?page=";
             string _strLabel = "<li><span class='page-label'>" +
                             (lg == LanguageHelper.vn ? PageResource.VN : PageResource.EN) +
                         ":</span></li>";
-            string _strNav = "";
+            string _strNav = string.Empty;
             if (totalRow == 0 || totalRow <= ROW_PER_PAGE)
             {
                 _strNav = "<li><span class='page-label'>" +
@@ -170,12 +164,12 @@ namespace Utils.Pagination
         {
             int _PAGINATION_PER_PAGE = maxRow;
             if (totalRow == 0)
-                return "";
+                return string.Empty;
             url = url + ".htm?page=";
             string _strLabel = "<li><span class='page-label'>" +
                             (lg == LanguageHelper.vn ? PageResource.VN : PageResource.EN) +
                         ":</span></li>";
-            string _strNav = "";
+            string _strNav = string.Empty;
             if (totalRow == 0 || totalRow <= ROW_PER_PAGE)
             {
                 _strNav = "<li><span class='page-label'>" +

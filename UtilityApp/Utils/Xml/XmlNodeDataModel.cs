@@ -1,5 +1,4 @@
-﻿
-namespace Utils.Xml
+﻿namespace Utils.Xml
 {
     /// <summary>
     /// Data of 

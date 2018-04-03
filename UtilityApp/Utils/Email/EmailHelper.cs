@@ -60,7 +60,7 @@ namespace Utils.Email
         /// <param name="emailTo">Sent to</param>
         /// <param name="mailsubject">subject</param>
         /// <param name="mailBody">body</param>
-        /// <returns>1/0</returns>
+        /// <returns>return 1/0</returns>
         public static int Sendemail(string email, string password, string emailTo, string mailsubject, string mailBody)
         {
             try
@@ -86,8 +86,8 @@ namespace Utils.Email
             catch (Exception ex)
             {
                 TextLoggerHelper.OutputLog(Error.E01, ex);
-                return 0;
             }
+            return 0;
         }
 
         /// <summary>

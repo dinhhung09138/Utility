@@ -17,7 +17,7 @@ namespace Utils.Database
         /// <summary>
         /// Connection string
         /// </summary>
-        private static string SqlConnectionStr = "";
+        private static string SqlConnectionStr = string.Empty;
 
         /// <summary>
         /// Set connect string
@@ -60,7 +60,7 @@ namespace Utils.Database
                     return Convert.ToString(_mycommand.ExecuteScalar());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TextLoggerHelper.OutputLog(DatabaseConstant.Erorr.SCALA_ERROR, ex);
                 return null;
@@ -68,7 +68,7 @@ namespace Utils.Database
         }
 
         /// <summary>
-        /// 
+        /// ReturnDataset function
         /// </summary>
         /// <param name="strQuery"></param>
         /// <param name="strTable"></param>
@@ -105,9 +105,9 @@ namespace Utils.Database
                         return null;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                TextLoggerHelper.OutputLog("", ex);
+                TextLoggerHelper.OutputLog(string.Empty, ex);
                 return null;
             }
         }
@@ -137,7 +137,7 @@ namespace Utils.Database
             }
             catch (Exception ex)
             {
-                TextLoggerHelper.OutputLog("", ex);
+                TextLoggerHelper.OutputLog(string.Empty, ex);
                 return null;
             }
         }
@@ -160,7 +160,7 @@ namespace Utils.Database
                 return _dt;
             }
         }
-        
+
         /// <summary>
         /// Create command
         /// </summary>
@@ -181,7 +181,7 @@ namespace Utils.Database
             }
             return _mycommand;
         }
-        
+
         /// <summary>
         /// Create a Sql Parameter
         /// </summary>
@@ -204,7 +204,7 @@ namespace Utils.Database
 
             return _param;
         }
-        
+
         /// <summary>
         /// Execute a query string
         /// </summary>
@@ -221,7 +221,7 @@ namespace Utils.Database
                     return _cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TextLoggerHelper.OutputLog("ExecuteNonquery", ex);
             }

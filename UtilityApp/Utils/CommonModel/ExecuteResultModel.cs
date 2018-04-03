@@ -1,5 +1,4 @@
-﻿
-namespace Utils.CommonModel
+﻿namespace Utils.CommonModel
 {
     /// <summary>
     /// Execute result model
@@ -15,6 +14,6 @@ namespace Utils.CommonModel
         /// <summary>
         /// Message
         /// </summary>
-        public string Message { get; set; } = "";
+        public string Message { get; set; } = string.Empty;
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace Utils.JqueryDatatable
+﻿namespace Utils.JqueryDatatable
 {
     /// <summary>
     /// List of column of datatable
@@ -12,7 +11,7 @@ namespace Utils.JqueryDatatable
         /// </summary>
         public string Data { get; set; }
         /// <summary>
-        /// 
+        /// Name
         /// </summary>
         public string Name { get; set; }
         /// <summary>
@@ -29,8 +28,8 @@ namespace Utils.JqueryDatatable
         /// </summary>
         public ColumnHelper()
         {
-            this.Data = "";
-            this.Name = "";
+            this.Data = string.Empty;
+            this.Name = string.Empty;
             this.Searchable = false;
             this.Orderable = false;
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace Utils.ExportExcel
 {
     /// <summary>
@@ -10,7 +9,7 @@ namespace Utils.ExportExcel
         /// <summary>
         /// Sheet name
         /// </summary>
-        public string SheetName { get; set; } = "";
+        public string SheetName { get; set; } = string.Empty;
 
         /// <summary>
         /// Show gridline. Default is false

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Utils.ErrorLogger
 {
     /// <summary>
@@ -31,11 +26,11 @@ namespace Utils.ErrorLogger
         {
             try
             {
-                //Write to Windows event log
+                ////Write to Windows event log
                 if (!EventLog.SourceExists(EVENT_LOG_NAME))
                     EventLog.CreateEventSource(objException.Message, EVENT_LOG_NAME);
 
-                // Inserting into event log
+                //// Inserting into event log
                 EventLog _log = new EventLog { Source = EVENT_LOG_NAME };
                 _log.WriteEntry(objException.Message, EventLogEntryType.Error);
 
@@ -55,7 +50,7 @@ namespace Utils.ErrorLogger
         /// <param name="entryType">Type of the entry.</param>
         public static void OutputLog(Exception objException, string eventLogName, EventLogEntryType entryType)
         {
-            var _logName = eventLogName ?? "";
+            var _logName = eventLogName ?? string.Empty;
             EventLog _log = new EventLog { Source = _logName };
             try
             {
@@ -68,8 +63,7 @@ namespace Utils.ErrorLogger
             catch (Exception ex)
             {
                 _log.Source = _logName;
-                _log.WriteEntry(Convert.ToString("INFORMATION: ")
-                                      + Convert.ToString(ex.Message),
+                _log.WriteEntry(Convert.ToString("INFORMATION: ") + Convert.ToString(ex.Message),
                 EventLogEntryType.Information);
             }
             finally

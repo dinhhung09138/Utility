@@ -1,5 +1,4 @@
-﻿
-namespace Utils.JqueryDatatable
+﻿namespace Utils.JqueryDatatable
 {
     /// <summary>
     /// Sort direction

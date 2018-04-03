@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Utils.JqueryDatatable;
-
 namespace Utils.Database
 {
     /// <summary>
-    /// 
+    /// IModelExecute Interface
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IModelExecute<T> where T : class

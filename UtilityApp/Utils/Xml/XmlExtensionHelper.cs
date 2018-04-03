@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -26,14 +25,14 @@ namespace Utils.Xml
             try
             {
                 XmlSerializerNamespaces _xmlNamespace = new XmlSerializerNamespaces();
-                _xmlNamespace.Add("", "");
+                _xmlNamespace.Add(string.Empty, string.Empty);
                 XmlSerializer _xmlSerialier = new XmlSerializer(model.GetType());
                 _tw = new XmlTextWriter(_sw);
                 _xmlSerialier.Serialize(_tw, model, _xmlNamespace);
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             finally
             {
@@ -57,7 +56,7 @@ namespace Utils.Xml
             StringReader _strReader = null;
             XmlSerializer _serializer = null;
             XmlTextReader _xmlReader = null;
-            Object _obj = null;
+            object _obj = null;
             try
             {
                 _strReader = new StringReader(xmlContent);
@@ -67,7 +66,7 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             finally
             {
@@ -105,13 +104,13 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             finally
             {
 
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -135,9 +134,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -161,9 +160,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -187,9 +186,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -213,9 +212,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -239,9 +238,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -265,9 +264,9 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
-            return "";
+            return string.Empty;
         }
 
         /// <summary>
@@ -282,9 +281,9 @@ namespace Utils.Xml
             {
                 XmlWriterSettings _setting = new XmlWriterSettings();
                 _setting.Indent = true;
-                _setting.IndentChars = (" ");
+                _setting.IndentChars = " ";
                 _setting.CloseOutput = true;
-                _setting.OmitXmlDeclaration = false; //False: show xml version=1.0 encoding=utf-8, true: hidden
+                _setting.OmitXmlDeclaration = false; ////False: show xml version=1.0 encoding=utf-8, true: hidden
                 using (XmlWriter writer = XmlWriter.Create(filePath, _setting))
                 {
                     if (node.RootName.Length == 0)
@@ -298,13 +297,12 @@ namespace Utils.Xml
                     writer.WriteStartElement(node.RootName);
                     WriteNode(writer, node.Nodes);
                     writer.WriteEndElement();
-                    //
                     writer.Flush();
                 }
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return false;
         }
@@ -348,7 +346,7 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return true;
         }
@@ -371,7 +369,7 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return false;
         }
@@ -399,7 +397,7 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return false;
         }
@@ -426,7 +424,7 @@ namespace Utils.Xml
             }
             catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return xmlContent;
         }

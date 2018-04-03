@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utils.Database
+﻿namespace Utils.Database
 {
     /// <summary>
     /// Init constant value
@@ -19,7 +13,7 @@ namespace Utils.Database
             /// <summary>
             /// Scala eror
             /// </summary>
-            public static readonly string SCALA_ERROR = "";
+            public static readonly string SCALA_ERROR = string.Empty;
         }
     }
 }

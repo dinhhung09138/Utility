@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-
 namespace Utils.ErrorLogger
 {
     /// <summary>
@@ -72,7 +71,7 @@ namespace Utils.ErrorLogger
                 {
                     Directory.CreateDirectory(_baseDir);
                 }
-                string _retFilePath = "";
+                string _retFilePath = string.Empty;
                 if (infoLog)
                 {
                     _retFilePath = Path.Combine(_baseDir, "InforLog.txt");
@@ -82,10 +81,10 @@ namespace Utils.ErrorLogger
                     _retFilePath = Path.Combine(_baseDir, "ErrorLog.txt");
                 }
 
-                // if exists, return the path
+                //// if exists, return the path
                 if (File.Exists(_retFilePath))
                     return _retFilePath;
-                //create a text file
+                ////create a text file
                 else
                 {
                     if (!CheckDirectory(_retFilePath))
@@ -187,12 +186,12 @@ namespace Utils.ErrorLogger
             string _strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
             {
-                //Get Default log file path "LogFile.txt"
+                //// Get Default log file path "LogFile.txt"
                 _strAddlogPathName = GetLogFilePath(true);
             }
             else
             {
-                //If the log file path is not empty but the file is not available it will create it
+                ////If the log file path is not empty but the file is not available it will create it
                 if (!File.Exists(LogFilePath))
                 {
                     if (!CheckDirectory(LogFilePath))
@@ -220,12 +219,12 @@ namespace Utils.ErrorLogger
             string _strAddlogPathName;
             if (LogFilePath.Equals(string.Empty))
             {
-                //Get Default log file path "LogFile.txt"
+                ////Get Default log file path "LogFile.txt"
                 _strAddlogPathName = GetLogFilePath(false);
             }
             else
             {
-                //If the log file path is not empty but the file is not available it will create it
+                ////If the log file path is not empty but the file is not available it will create it
                 if (!File.Exists(LogFilePath))
                 {
                     if (!CheckDirectory(LogFilePath))

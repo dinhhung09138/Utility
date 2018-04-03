@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utils.ExportExcel
 {
@@ -31,12 +28,12 @@ namespace Utils.ExportExcel
                 _excelPkg.SaveAs(new FileInfo(filePath));
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ErrorLogger.TextLoggerHelper.OutputLog("", ex);
+                ErrorLogger.TextLoggerHelper.OutputLog(string.Empty, ex);
             }
             return false;
-            
+
         }
 
         /// <summary>
@@ -48,7 +45,7 @@ namespace Utils.ExportExcel
         private static ExcelWorksheet CreateSheet(ExcelPackage excelPackage, ExcelContentModel excelModel)
         {
             ExcelWorksheet _sheet = excelPackage.Workbook.Worksheets.Add(excelModel.SheetName);
-            //Data content
+            //// Data content
             foreach (var item in excelModel.Data)
             {
                 _sheet.Cells[item.Row, item.Col].Value = item.Value;
@@ -57,7 +54,7 @@ namespace Utils.ExportExcel
                     _sheet.Cells[item.Row, item.Col].Style.Font.Bold = item.Bold;
                 }
             }
-            //Horizontal formating
+            //// Horizontal formating
             foreach (var item in excelModel.Horizontals)
             {
                 using (ExcelRange range = _sheet.Cells[item.FromRow, item.FromColumn, item.ToRow, item.ToColumn])
@@ -65,7 +62,7 @@ namespace Utils.ExportExcel
                     range.Style.HorizontalAlignment = item.Horizontal;
                 }
             }
-            //Vertical formating
+            //// Vertical formating
             foreach (var item in excelModel.Verticals)
             {
                 using (ExcelRange range = _sheet.Cells[item.FromRow, item.FromColumn, item.ToRow, item.ToColumn])
@@ -73,7 +70,7 @@ namespace Utils.ExportExcel
                     range.Style.VerticalAlignment = item.Vertical;
                 }
             }
-            //Merge
+            //// Merge
             foreach (var item in excelModel.Merges)
             {
                 using (ExcelRange range = _sheet.Cells[item.FromRow, item.FromColumn, item.ToRow, item.ToColumn])
@@ -81,7 +78,7 @@ namespace Utils.ExportExcel
                     range.Merge = true;
                 }
             }
-            //Border
+            //// Border
             foreach (var item in excelModel.Borders)
             {
                 using (ExcelRange range = _sheet.Cells[item.FromRow, item.FromColumn, item.ToRow, item.ToColumn])
@@ -92,14 +89,11 @@ namespace Utils.ExportExcel
                     range.Style.Border.Left.Style = item.Border;
                 }
             }
-            //Set format text for all sheet
-            //            _sheet.Cells.Style.Numberformat.Format = "@";
-            //Format specific cell
+            //// Format specific cell
             foreach (var item in excelModel.Formatings)
             {
                 _sheet.Cells[item.FromRow, item.FromColumn, item.ToRow, item.ToColumn].Style.Numberformat.Format = item.Format;
             }
-            //
             _sheet.Cells.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
             _sheet.Cells.AutoFitColumns();
             _sheet.View.ShowGridLines = excelModel.ShowGridLines;
