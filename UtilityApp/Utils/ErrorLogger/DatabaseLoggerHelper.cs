@@ -14,7 +14,8 @@ namespace Utils.ErrorLogger
         /// Table name
         /// Use for write log
         /// </summary>
-        private static readonly string TABLE_NAME = "SYS_ERROR_LOGGING";
+        ///private static readonly string TABLE_NAME = "SYS_ERROR_LOGGING";
+
         /// <summary>
         /// Write log to Database
         /// </summary>

@@ -283,7 +283,7 @@ namespace Utils
         /// </summary>
         /// <param name="str">Input string</param>
         /// <returns>String</returns>
-        public static string UpperFirstWords(this string str)
+        public static string CapitalizeFirstWords(this string str)
         {
             str = str.Trim().ToLower();
 
@@ -309,6 +309,16 @@ namespace Utils
                 }
             }
             return new string(array);
+        }
+
+        /// <summary>
+        /// Capitalizer first letter
+        /// </summary>
+        /// <param name="str">String content</param>
+        /// <returns></returns>
+        public static string CapitalizeFirstLetter(this string str)
+        {
+            return str.Substring(0, 1).ToUpper() + str.Substring(1).ToLower();
         }
 
         #endregion
