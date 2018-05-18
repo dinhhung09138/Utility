@@ -44,6 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -61,6 +62,7 @@
     <Compile Include="CommonModel\HandleErrorInfoViewModel.cs" />
     <Compile Include="Constant\FormatValue.cs" />
     <Compile Include="Database\ADOExecuteHelper.cs" />
+    <Compile Include="Database\BaseModel.cs" />
     <Compile Include="Database\DatabaseConstant.cs" />
     <Compile Include="Database\IModelExecuteHelper.cs" />
     <Compile Include="ErrorLogger\DatabaseLoggerHelper.cs" />

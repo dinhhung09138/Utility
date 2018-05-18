@@ -233,7 +233,7 @@ namespace Utils
         /// <returns>Remove all special and unicode characters</returns>
         public static string TitleToAlias(this string str)
         {
-            return str.ReplaceUnicode().RemoveSpecialChars().Trim().Replace(' ', '-');
+            return str.ReplaceUnicode().RemoveSpecialChars().Trim().Replace(' ', '-').ToLower();
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Utils
         /// <returns>Remove all specia characters</returns>
         public static string RemoveSpecialChars(this string str)
         {
-            string[] chars = new string[] { ",", "-", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "(", ")", ":", "|", "[", "]", "?", "+", "=", "{", "}", "`", "~", "<", ">" };
+            string[] chars = new string[] { ",", "-", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "(", ")", ":", "|", "[", "]", "?", "+", "=", "{", "}", "`", "~", "<", ">", "“", "”" };
 
             for (int i = 0; i < chars.Length; i++)
             {
@@ -313,6 +313,25 @@ namespace Utils
         public static string CapitalizeFirstLetter(this string str)
         {
             return str.Substring(0, 1).ToUpper() + str.Substring(1).ToLower();
+        }
+
+        /// <summary>
+        /// Convert string to date
+        /// Use default format dd/MM/yyyy
+        /// </summary>
+        /// <param name="dateString">date string value</param>
+        /// <returns></returns>
+        public static DateTime StringToDate(this string dateString)
+        {
+            try
+            {
+                string[] arr = dateString.Split('/');
+                return new DateTime(int.Parse(arr[2]), int.Parse(arr[1]), int.Parse(arr[0]));
+            }
+            catch
+            {
+            }
+            return new DateTime();
         }
 
         #endregion
