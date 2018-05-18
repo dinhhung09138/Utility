@@ -67,5 +67,12 @@ namespace Utils.Database
         /// </summary>
         [Display(Name = "Thêm")]
         public bool Insert { get; set; } = false;
+
+        /// <summary>
+        /// Publish
+        /// </summary>
+        [Display(Name = "Publish")]
+        public bool Publish { get; set; } = false;
+
     }
 }
